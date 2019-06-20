@@ -1,3 +1,12 @@
 .timeBox {
-  height: 10px;
-  border: 2px solid black; }
+  margin-left: 10px;
+  width: 200px;
+  height: 15px;
+  border: 2px solid black;
+  border-radius: 5px; }
+  .timeBox > div {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    border: 2px solid white;
+    box-sizing: border-box; }
