@@ -1,12 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
 .timeBox {
   margin-left: 10px;
   width: 200px;
   height: 15px;
   border: 2px solid black;
-  border-radius: 5px; }
+  border-radius: 5px;
+  margin-bottom: 10px; }
   .timeBox > div {
-    width: 100%;
+    transition-duration: .2s;
     height: 100%;
     background-color: black;
     border: 2px solid white;
     box-sizing: border-box; }
+
+.btnBar {
+  display: flex; }

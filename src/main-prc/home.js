@@ -9,9 +9,10 @@ ipcMain.on("start-focus", winStartFocus);
 function winStartFocus() {
     startWin = new BrowserWindow({
         width: 600,
-        height: 200,
+        height: 400,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            webSecurity: false
         }
     })
 
