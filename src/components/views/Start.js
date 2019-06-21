@@ -1,11 +1,18 @@
 import React from "react";
 import "../../assets/css/Start/start.css";
 
-const Start = (props) => (
-    <div>
-        <h1>Start Page</h1>
-        <div className="timeBox">
-            <div></div>
+const Start = ({total, left, round, reset, pause}) => (
+    <div className="App">
+        <h1>Focusing...</h1>
+        <div className="container">
+            <p>Rounds: {round}</p>
+            <div className="timeBox">
+                <div style={{width: `${left/total*100}%`}}></div>
+            </div>
+            <div className="btnBar">
+                <button onClick={reset}>Reset</button>
+                <button onClick={pause}>Pause</button>
+            </div>
         </div>
     </div>
 )
