@@ -9,8 +9,12 @@ class Home extends Component {
         this.state = {}
     }
 
-    handleClick = () => {
+    startFocus = () => {
         ipcRenderer.send("start-focus");
+    }
+
+    blockSite = () => {
+        ipcRenderer.send("block-site");
     }
 
     render() {
@@ -18,6 +22,7 @@ class Home extends Component {
             <div className="App">
                 <h1>Home page</h1>
                 <button onClick={this.handleClick}>Click to start focus</button>
+                <button onClick={this.blockSite}>Click to block site</button>
             </div>
         )
     }
