@@ -13,6 +13,8 @@ ipcMain.on("stop-block", stopBlock);
 
 let blockWin;
 const readFile = promisify(fs.readFile);
+const appendFile = promisify(fs.appendFile);
+const writeFile = promisify(fs.writeFile);
 
 function winBlock(){
     blockWin = new BrowserWindow({
@@ -30,24 +32,27 @@ function winBlock(){
     blockWin.on("closed", () => blockWin = null);
 }
 
+function removeOldHostLink(host) {
+    let start = host.findIndex(v => v === "# START FOCUS APP - DO NOT TOUCH");
+    let end = host.findIndex(v => v === "# END FOCUS APP - DO NOT TOUCH");
+    if(start !== -1 && end !== -1) host.splice(start-1, end+1);
+    return host.join("\n");
+}
+
+function addLinkToHost(list) {
+    let content = [];
+    content.push(" \n# START FOCUS APP - DO NOT TOUCH\n ");
+    content.push(redirectPath + " www.facebook.com");
+    content.push(" \n# END FOCUS APP - DO NOT TOUCH");
+    return content.join("\n");
+}
+
 async function beginBlock() {
     try {
         if(blockWin){
-            let host = (await readFile(filePath)).toString();
-            console.log(host);
-            let list = host.split("\n");
-            let firstUse = list.every(v => v !== "# FOR FOCUS APP");
-            if(firstUse){
-                list.push(" \n# FOR FOCUS APP");
-            }
-            list.push("");
-            list.push(redirectPath + " facebook.com");
-            let newHost = list.join("\n");
-            console.log(newHost);
-
-            //reset
-            list = newHost.split("\n");
-
+            await stopBlock();
+            let content = addLinkToHost();
+            await appendFile(filePath, content);
         }
     } catch(err) {
         console.log(err);
@@ -56,11 +61,10 @@ async function beginBlock() {
 
 async function stopBlock() {
     try {
-        let host = (await readFile(filePath)).toString();
         if(blockWin){
-            console.log("ok run");
-        } else {
-            console.log("No host");
+            let host = (await readFile(filePath)).toString().split("\n");
+            let removedHost = removeOldHostLink(host);
+            await writeFile(filePath, removedHost);
         }
     } catch(err) {
         console.log(err);

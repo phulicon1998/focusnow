@@ -1,9 +1,10 @@
 import React, {Component} from "react";
+import Main from "../../components/views/Main";
 
 const electron = window.require('electron');
 const ipcRenderer = electron.ipcRenderer;
 
-class Home extends Component {
+class MainContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {}
@@ -18,14 +19,11 @@ class Home extends Component {
     }
 
     render() {
-        return (
-            <div className="App">
-                <h1>Home page</h1>
-                <button onClick={this.handleClick}>Click to start focus</button>
-                <button onClick={this.blockSite}>Click to block site</button>
-            </div>
-        )
+        return <Main
+            block={this.blockSite}
+            start={this.startFocus}
+        />
     }
 }
 
-export default Home;
+export default MainContainer;
