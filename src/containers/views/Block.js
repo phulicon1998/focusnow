@@ -1,6 +1,9 @@
 import React, {Component} from "react";
 import Block from "../../components/views/Block";
 
+const electron = window.require('electron');
+const ipc = electron.ipcRenderer;
+
 class BlockContainer extends Component {
 
     constructor(props){
@@ -10,9 +13,19 @@ class BlockContainer extends Component {
         }
     }
 
+    hdBlock = () => {
+        ipc.send("begin-block");
+    }
+
+    hdUnBlock = () => {
+        ipc.send("stop-block");
+    }
 
     render() {
-        return <Block />
+        return <Block
+            block={this.hdBlock}
+            unblock={this.hdUnBlock}
+        />
     }
 }
 
