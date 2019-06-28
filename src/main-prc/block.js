@@ -42,8 +42,11 @@ async function beginBlock() {
             }
             list.push("");
             list.push(redirectPath + " facebook.com");
-            let newList = list.join("\n");
-            console.log(newList);
+            let newHost = list.join("\n");
+            console.log(newHost);
+
+            //reset
+            list = newHost.split("\n");
 
         }
     } catch(err) {
