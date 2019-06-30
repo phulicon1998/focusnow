@@ -12,13 +12,17 @@ function createWindow() {
     loadProcesses();
 
     win = new BrowserWindow({
-        width: 800,
-        height: 400,
+        width: 329,
+        height: 300,
+        resizable: false,
+        alwaysOnTop: true,
         webPreferences: {
             nodeIntegration: true,
             webSecurity: false
         },
     })
+
+    win.setMenu(null);
 
     win.loadURL(isDev ? "http://localhost:3000" : `file://${path.join(__dirname, '../build/index.html')}`);
 
