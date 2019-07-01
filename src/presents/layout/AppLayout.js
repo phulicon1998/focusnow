@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {Link} from "react-router-dom";
 import "../../assets/css/Layout/layout.css";
 
 import {ReactComponent as Play} from "../../assets/icon/play.svg";
@@ -15,9 +16,9 @@ class AppLayout extends Component {
         return (
             <div className="layout">
                 <div className="navbar">
-                    <button className="active"><Play/></button>
-                    <button><Block/></button>
-                    <button><Setting/></button>
+                    <Link to="/" className="active"><Play/></Link>
+                    <Link to="/block"><Block/></Link>
+                    <Link to="/setting"><Setting/></Link>
                 </div>
                 <div className="body">
                     {this.props.children}

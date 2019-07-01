@@ -8,9 +8,6 @@ const Main = ({start, block}) => (
             <div>
                 <button onClick={start}>Start focus</button>
             </div>
-            <div>
-                <button onClick={block}>Block site</button>
-            </div>
         </div>
     </AppLayout>
 )
