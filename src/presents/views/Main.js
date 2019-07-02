@@ -1,12 +1,12 @@
 import React from "react";
 import AppLayout from "../layout/AppLayout";
 
-const Main = ({start, block}) => (
+const Main = ({scrFocus}) => (
     <AppLayout>
         <div className="App">
             <h1>Main screen</h1>
             <div>
-                <button onClick={start}>Start focus</button>
+                <button onClick={scrFocus}>Start focus</button>
             </div>
         </div>
     </AppLayout>

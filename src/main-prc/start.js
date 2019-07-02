@@ -4,9 +4,12 @@ const isDev = require("electron-is-dev");
 
 let startWin;
 
-ipcMain.on("start-focus", winStartFocus);
+ipcMain.on("start-focus", winStart);
 
-function winStartFocus() {
+function winStart() {
+    let currentWin = BrowserWindow.getFocusedWindow();
+    currentWin.hide();
+
     startWin = new BrowserWindow({
         width: 600,
         height: 400,

@@ -6,7 +6,7 @@ const Page = (props) => (
     <Switch>
         <Route>
             <Switch>
-                { path.map(r => <Route {...r}/>) }
+                { path.map((r, i) => <Route {...r} key={i}/>) }
             </Switch>
         </Route>
     </Switch>

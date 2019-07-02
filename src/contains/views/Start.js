@@ -1,101 +1,56 @@
 import React, {useState, useEffect} from "react";
 import Start from "../../presents/views/Start";
 
+const electron = window.require("electron");
+const ipc = electron.ipcRenderer;
+
 export default function StartContain(props) {
-    const [total, setTotal] = useState(10);
-    const [left, setLeft] = useState(10);
-    const [round, setRound] = useState(1);
-    let interval = null;
+    const [state, setState] = useState({
+        total: 10,
+        left: 10,
+        round: 1,
+        cont: true
+    });
+    const {total, left, cont} = state;
+    let interval;
 
     useEffect(() => {
         decrease();
+        return () => clearInterval(interval);
     })
 
     function decrease(cb) {
-        interval = setInterval(() => {
-            if(left === 0){
-                clearInterval(interval);
-                interval = null;
-                if(cb) return cb();
-            }
-            setLeft(left - 1);
-        }, 1000);
+        if(cont) {
+            interval = setInterval(() => {
+                if(left === 0){
+                    clearInterval(interval);
+                    return cb ? cb() : null;
+                }
+                setState(prev => ({...prev, left: prev.left - 1 }));
+            }, 1000);
+        }
     }
 
     function reset() {
         clearInterval(interval);
-        setLeft(total);
-        setRound(1);
+        setState({...state, left: total, cont: false});
     }
 
     function pause() {
-        if(interval) {
+        if(cont) {
             clearInterval(interval);
-            interval = null;
-            return;
+            return setState({...state, cont: !cont});
         }
+        setState({...state, cont: !cont});
         return decrease();
     }
+    
+    const cancel = () => ipc.send("restore-main");
 
     return <Start
-        round={round}
+        {...state}
         reset={reset}
         pause={pause}
+        cancel={cancel}
     />
 }
-
-// class StartContainer extends Component {
-//     constructor(props){
-//         super(props);
-//         this.state = {
-//             total: 10,
-//             left: 10,
-//             round: 1
-//         }
-//     }
-//
-//     componentDidMount(){
-//         this.subTime();
-//     }
-//
-//     reset = () => {
-//         clearInterval(this.interval);
-//         const {total} = this.state;
-//         this.setState({left: total, round: 1});
-//     }
-//
-//     pause = () => {
-//         if(this.interval) {
-//             clearInterval(this.interval);
-//             this.interval = null;
-//             return;
-//         }
-//         return this.subTime(this.reload);
-//     }
-//
-//     subTime = (cb) => {
-//         this.interval = setInterval(() => {
-//             const {left} = this.state;
-//             if(left === 0){
-//                 clearInterval(this.interval);
-//                 this.interval = null;
-//                 if(cb) return cb();
-//             }
-//             this.setState({left: left - 1});
-//         }, 1000);
-//     }
-//
-//     reload = () => {
-//         this.setState({left: 5});
-//     }
-//
-//     render() {
-//         return <Start
-//             {...this.state }
-//             reset={this.reset}
-//             pause={this.pause}
-//         />
-//     }
-// }
-
-// export default StartContainer;
