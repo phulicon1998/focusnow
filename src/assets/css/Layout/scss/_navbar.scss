@@ -1,0 +1,55 @@
+.navbar {
+    background-color: #373737;
+    display: flex;
+    flex-direction: column;
+    padding-top: 37px;
+    width: 50px;
+
+    > a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 55px;
+        border: none !important;
+        outline: none !important;
+        background-color: transparent;
+        padding: none;
+        cursor: pointer;
+        transition-duration: .5s;
+
+        path {
+            transition-duration: .5s;
+        }
+
+        &:hover {
+            background-color: #5F5F5F;
+
+            > svg {
+                -webkit-filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.1));
+                filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.1));
+                transition-duration: .5s;
+
+                > path {
+                    fill: #B6B6B6 !important;
+                }
+            }
+        }
+
+        &.active, &.active:hover {
+            background-color: #5B6765;
+
+            > svg {
+                -webkit-filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.1));
+                filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.1));
+                transition-duration: .5s;
+                
+                > path {
+                    fill: #67EAD2 !important;
+                }
+            }
+
+
+        }
+
+    }
+}

@@ -1,8 +1,10 @@
-const {app, BrowserWindow} = require("electron");
+const {app, BrowserWindow, ipcMain} = require("electron");
 
 const path = require('path');
 const glob = require('glob');
 const isDev = require("electron-is-dev");
+
+ipcMain.on("restore-main", restoreMain);
 
 let win;
 
@@ -12,13 +14,17 @@ function createWindow() {
     loadProcesses();
 
     win = new BrowserWindow({
-        width: 800,
-        height: 400,
+        width: 329,
+        height: 300,
+        resizable: false,
+        alwaysOnTop: true,
         webPreferences: {
             nodeIntegration: true,
             webSecurity: false
         },
     })
+
+    // win.setMenu(null);
 
     win.loadURL(isDev ? "http://localhost:3000" : `file://${path.join(__dirname, '../build/index.html')}`);
 
@@ -57,4 +63,10 @@ function makeSingleInstance () {
 function loadProcesses() {
     const files = glob.sync(path.join(__dirname, '../src/main-prc/*.js'));
     files.forEach((file) => { require(file) });
+}
+
+function restoreMain() {
+    let current = BrowserWindow.getFocusedWindow();
+    current.close();
+    win.show();
 }

@@ -1,14 +1,12 @@
 import React from 'react';
 import { Route, Switch, withRouter} from "react-router-dom";
-import Home from "./views/Home";
-import Start from "./views/Start";
+import path from "../content";
 
 const Page = (props) => (
     <Switch>
         <Route>
             <Switch>
-                <Route path="/start" component={Start}/>
-                <Route exact path="/" component={Home}/>
+                { path.map((r, i) => <Route {...r} key={i}/>) }
             </Switch>
         </Route>
     </Switch>
