@@ -5,18 +5,64 @@
     color: #dadada;
     transition-duration: .2s;
 
-    > span {
+    span {
         font-size: 12px;
         font-weight: 500;
         line-height: 35px;
         font-weight: 300;
     }
 
+    > div {
+        display: flex;
+        align-items: center;
+
+        span {
+            margin-left: 7px;
+            margin-right: 7px;
+            width: 20px;
+            text-align: center;
+        }
+
+        > svg {
+            cursor: pointer;
+
+            path {
+                fill: rgba(181, 181, 181, 0.5);
+                transition-duration: .2s;
+            }
+        }
+
+    }
+
+
     &:nth-of-type(1) {
         color: white;
+
+        > div {
+
+            path {
+                fill: #B5B5B5 !important;
+            }
+        }
     }
 
     &:hover {
         color: white;
+
+        > div {
+
+            svg {
+                path {
+                    fill: #B5B5B5 !important;
+                }
+
+                &:hover {
+                    path {
+                        fill: #67EAD2 !important;
+                    }
+                }
+
+            }
+        }
     }
 }

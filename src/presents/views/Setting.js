@@ -3,11 +3,33 @@ import AppLayout from "../layout/AppLayout";
 import "../../assets/css/Setting/setting.css";
 
 import {ReactComponent as Save} from "../../assets/icon/save.svg";
+import {ReactComponent as Check} from "../../assets/icon/check.svg";
+import {ReactComponent as Uncheck} from "../../assets/icon/uncheck.svg";
+import {ReactComponent as Add} from "../../assets/icon/add.svg";
+import {ReactComponent as Minus} from "../../assets/icon/minus.svg";
 
 const TimeItem = ({text, value}) => (
     <div className="timeItem">
         <span>{text}</span>
-        <span>{value}</span>
+        <div>
+            <Add />
+            <span>{value}</span>
+            <Minus />
+        </div>
+    </div>
+)
+
+const CheckItem = ({text}) => (
+    <div className="checked">
+        <Check />
+        <span>{text}</span>
+    </div>
+)
+
+const UncheckItem = ({text}) => (
+    <div>
+        <Uncheck />
+        <span>{text}</span>
     </div>
 )
 
@@ -20,6 +42,10 @@ const Setting = ({title, work, short, long, round}) => (
             <TimeItem text="Short Break" value={short} />
             <TimeItem text="Long Break" value={long} />
             <TimeItem text="Round" value={round} />
+        </div>
+        <div className="app-setting">
+            <UncheckItem text="Run on window startup" />
+            <CheckItem text="Minimize to system tray" />
         </div>
     </AppLayout>
 )
