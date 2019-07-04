@@ -6,7 +6,16 @@ const Page = (props) => (
     <Switch>
         <Route>
             <Switch>
-                { path.map((r, i) => <Route {...r} key={i}/>) }
+            {
+                path.map((r, i) => <Route
+                    path={r.path}
+                    render={() => (
+                        <r.comp {...r.display} />
+                    )}
+                    exact = {r.exact ? r.exact: false}
+                    key={i}
+                />)
+            }
             </Switch>
         </Route>
     </Switch>
