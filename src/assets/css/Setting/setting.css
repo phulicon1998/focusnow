@@ -78,7 +78,8 @@
     .app-setting > div > span {
       margin-left: 20px;
       font-size: 12px;
-      font-weight: 300; }
+      font-weight: 300;
+      color: #efefef; }
     .app-setting > div.checked svg {
-      -webkit-filter: drop-shadow(3px 5px 2px rgba(0, 0, 0, 0.15));
-      filter: drop-shadow(3px 5px 2px rgba(0, 0, 0, 0.15)); }
+      -webkit-filter: drop-shadow(2px 4px 2px rgba(0, 0, 0, 0.15));
+      filter: drop-shadow(2px 4px 2px rgba(0, 0, 0, 0.15)); }

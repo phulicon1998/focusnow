@@ -12,13 +12,15 @@ class AppLayout extends Component {
         this.state = {}
     }
 
+    setActive = (link) => this.props.location.pathname === link;
+
     render() {
         return (
             <div className="layout">
                 <div className="navbar">
-                    <Link to="/" className="active"><Play/></Link>
-                    <Link to="/block"><Block/></Link>
-                    <Link to="/setting"><Setting/></Link>
+                    <Link to="/" className={this.setActive("/") ? "active" : ""}><Play/></Link>
+                    <Link to="/block" className={this.setActive("/block") ? "active" : ""}><Block/></Link>
+                    <Link to="/setting" className={this.setActive("/setting") ? "active" : ""}><Setting/></Link>
                 </div>
                 <div className="body">
                     {this.props.children}

@@ -15,9 +15,11 @@ export default function SettingContain(props){
     useEffect(() => {
         let isLoad = false;
         load();
-        ipc.on("setting-data", (err, arg) => {
-            if(!isLoad) setState({...arg})
-        });
+        if(!isLoad) {
+            ipc.on("setting-data", (err, arg) => {
+                if(!isLoad) setState({...arg})
+            });
+        }
         return () => isLoad = true;
     }, []);
 
@@ -25,5 +27,5 @@ export default function SettingContain(props){
         ipc.send("load-setting");
     }
 
-    return <Setting {...state} {...props}/>
+    return <Setting {...props} {...state} {...props}/>
 }
