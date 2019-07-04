@@ -49,11 +49,9 @@ function addLinkToHost(list) {
 
 async function beginBlock() {
     try {
-        if(blockWin){
-            await stopBlock();
-            let content = addLinkToHost();
-            await appendFile(filePath, content);
-        }
+        await stopBlock();
+        let content = addLinkToHost();
+        await appendFile(filePath, content);
     } catch(err) {
         console.log(err);
     }
@@ -61,11 +59,9 @@ async function beginBlock() {
 
 async function stopBlock() {
     try {
-        if(blockWin){
-            let host = (await readFile(filePath)).toString().split("\n");
-            let removedHost = removeOldHostLink(host);
-            await writeFile(filePath, removedHost);
-        }
+        let host = (await readFile(filePath)).toString().split("\n");
+        let removedHost = removeOldHostLink(host);
+        await writeFile(filePath, removedHost);
     } catch(err) {
         console.log(err);
     }
