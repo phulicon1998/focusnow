@@ -33,8 +33,8 @@ const UncheckItem = ({text}) => (
     </div>
 )
 
-const Setting = ({title, work, short, long, round}) => (
-    <AppLayout>
+const Setting = ({title, work, short, long, round, ...props}) => (
+    <AppLayout {...props}>
         {/* <h3 className="setting edit">{title} <button><Save/> Save</button></h3> */}
         <h3 className="setting">{title} <button>Edit</button></h3>
         <div className="time-setting">

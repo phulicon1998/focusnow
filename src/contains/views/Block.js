@@ -10,5 +10,5 @@ export default function BlockContain(props) {
     const block = () => ipc.send("begin-block");
     const unblock = () => ipc.send("stop-block");
 
-    return <Block block={block} unblock={unblock}/>
+    return <Block {...props} block={block} unblock={unblock}/>
 }
