@@ -4,15 +4,22 @@
   background-color: white;
   flex-grow: 0;
   width: 100%;
-  height: 100%; }
+  height: 300px;
+  overflow: hidden; }
 
 .navbar {
   background-color: #373737;
   display: flex;
   flex-direction: column;
   padding-top: 37px;
-  width: 50px; }
+  min-width: 50px;
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  -webkit-app-region: drag; }
   .navbar > a {
+    -webkit-app-region: no-drag;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,3 +48,29 @@
         transition-duration: .5s; }
         .navbar > a.active > svg > path, .navbar > a.active:hover > svg > path {
           fill: #67EAD2 !important; }
+
+.body {
+  background-image: linear-gradient(312.15deg, #6B7E81 32%, rgba(51, 69, 71, 0.5) 90.98%);
+  padding: 46px 35px 0px 77px;
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  color: white;
+  width: 278px;
+  max-height: 100%;
+  overflow: auto; }
+
+::-webkit-scrollbar {
+  width: 10px; }
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent; }
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #f7f7f738;
+  border-radius: 5px; }
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #f7f7f79e; }
