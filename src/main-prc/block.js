@@ -42,18 +42,16 @@ function removeOldHostLink(host) {
 function addLinkToHost(list) {
     let content = [];
     content.push(" \n# START FOCUS APP - DO NOT TOUCH\n ");
-    content.push(redirectPath + " www.facebook.com");
+    content.push(redirectPath + " tv.zing.vn");
     content.push(" \n# END FOCUS APP - DO NOT TOUCH");
     return content.join("\n");
 }
 
 async function beginBlock() {
     try {
-        if(blockWin){
-            await stopBlock();
-            let content = addLinkToHost();
-            await appendFile(filePath, content);
-        }
+        await stopBlock();
+        let content = addLinkToHost();
+        await appendFile(filePath, content);
     } catch(err) {
         console.log(err);
     }
@@ -61,11 +59,9 @@ async function beginBlock() {
 
 async function stopBlock() {
     try {
-        if(blockWin){
-            let host = (await readFile(filePath)).toString().split("\n");
-            let removedHost = removeOldHostLink(host);
-            await writeFile(filePath, removedHost);
-        }
+        let host = (await readFile(filePath)).toString().split("\n");
+        let removedHost = removeOldHostLink(host);
+        await writeFile(filePath, removedHost);
     } catch(err) {
         console.log(err);
     }

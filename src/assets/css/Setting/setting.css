@@ -1,15 +1,48 @@
-.title {
+.setting {
+  width: 100%;
+  display: flex;
+  align-items: center;
   font-size: 24px;
   font-weight: normal;
   margin: 0;
-  margin-bottom: 30px; }
+  margin-bottom: 25px;
+  justify-content: space-between; }
+  .setting.edit {
+    justify-content: flex-start; }
+    .setting.edit > button {
+      margin-left: 10px; }
+      .setting.edit > button > svg {
+        margin-right: 6px; }
+  .setting > button {
+    border: none;
+    border-radius: 3px;
+    color: #67EAD2;
+    background-color: #535353;
+    padding: 5px 10px 5px 10px;
+    font-size: 11px;
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center; }
 
 .timeItem {
   display: flex;
   justify-content: space-between;
-  width: 100%; }
+  width: 100%;
+  color: #dadada;
+  transition-duration: .2s; }
   .timeItem > span {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
     line-height: 35px;
     font-weight: 300; }
+  .timeItem:nth-of-type(1) {
+    color: white; }
+  .timeItem:hover {
+    color: white; }
+
+.time-setting {
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(211, 211, 211, 0.3); }

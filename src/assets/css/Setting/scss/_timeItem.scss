@@ -2,11 +2,21 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    color: #dadada;
+    transition-duration: .2s;
 
     > span {
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 500;
         line-height: 35px;
         font-weight: 300;
+    }
+
+    &:nth-of-type(1) {
+        color: white;
+    }
+
+    &:hover {
+        color: white;
     }
 }
