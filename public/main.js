@@ -7,8 +7,6 @@ require("../src/service/dbControl");
 
 ipcMain.on("restore-main", restoreMain);
 
-ipcMain.on("restore-main", restoreMain);
-
 let win;
 
 function createWindow() {
