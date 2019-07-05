@@ -1,9 +1,9 @@
 import StartContain from "../contains/views/Start";
 import FocusContain from "../contains/views/Focus";
 import BlockContain from "../contains/views/Block";
-import SettingContain from "../contains/views/Setting";
+import OptionContain from "../contains/views/Option";
 
-import Setting from "./Setting";
+import Option from "./Option";
 
 const path = [
     {
@@ -23,9 +23,9 @@ const path = [
         display: {}
     },
     {
-        path: "/setting",
-        comp: SettingContain,
-        display: Setting
+        path: "/option",
+        comp: OptionContain,
+        display: Option
     }
 ]
 

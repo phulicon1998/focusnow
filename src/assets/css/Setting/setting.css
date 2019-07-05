@@ -14,6 +14,8 @@
       .setting.edit > button > svg {
         margin-right: 6px; }
   .setting > button {
+    cursor: pointer;
+    outline: none;
     border: none;
     border-radius: 3px;
     color: #67EAD2;
@@ -74,7 +76,8 @@
   .app-setting > div {
     display: flex;
     align-items: center;
-    margin-bottom: 15px; }
+    margin-bottom: 15px;
+    cursor: pointer; }
     .app-setting > div > span {
       margin-left: 20px;
       font-size: 12px;

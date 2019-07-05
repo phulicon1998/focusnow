@@ -11,7 +11,9 @@ function initDb(){
                 work: 25,
                 short: 5,
                 long: 20,
-                round: 4
+                round: 4,
+                onStart: false,
+                minimize: false
             }
         }).write();
     }
