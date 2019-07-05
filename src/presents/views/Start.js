@@ -1,13 +1,23 @@
 import React from "react";
+import "../../assets/css/Start/start.css";
 import AppLayout from "../../contains/layout/AppLayout";
+import {ReactComponent as Chrome} from "../../assets/icon/chrome.svg";
+import {ReactComponent as Undo} from "../../assets/icon/undo.svg";
+import {ReactComponent as Unlink} from "../../assets/icon/unlink.svg";
 
 const Start = ({scrFocus, ...props}) => (
     <AppLayout {...props}>
-        <div className="App">
-            <h1>Main screen</h1>
+        <h1 className="title">Start</h1>
+        <div className="remind">
             <div>
-                <button onClick={scrFocus}>Start focus</button>
+                <Chrome/>
+                <span><Undo/></span>
+                <Unlink/>
             </div>
+            <p>Restart browser to take effect with blocked site</p>
+        </div>
+        <div className="btnStart">
+            <button onClick={scrFocus}>Begin focus now</button>
         </div>
     </AppLayout>
 )
