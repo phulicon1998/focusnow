@@ -1,0 +1,27 @@
+.remind {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    margin-bottom: 27px;
+
+    > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 22px;
+        width: 100%;
+
+        > span {
+            margin-right: 22px;
+            margin-left: 22px;
+        }
+    }
+
+    > p {
+        text-align: center;
+        line-height: 1.5;
+        padding-right: 15px;
+        padding-left: 15px;
+        font-size: 12px;
+        color: #D0D0D0;
+    }
+}

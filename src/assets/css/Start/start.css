@@ -1,0 +1,51 @@
+.title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 26px;
+  font-weight: normal;
+  margin: 0;
+  margin-bottom: 25px;
+  justify-content: space-between; }
+
+.remind {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  margin-bottom: 27px; }
+  .remind > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    width: 100%; }
+    .remind > div > span {
+      margin-right: 22px;
+      margin-left: 22px; }
+  .remind > p {
+    text-align: center;
+    line-height: 1.5;
+    padding-right: 15px;
+    padding-left: 15px;
+    font-size: 12px;
+    color: #D0D0D0; }
+
+.btnStart {
+  display: flex;
+  width: 100%;
+  justify-content: center; }
+  .btnStart button {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    border: none;
+    border-radius: 3px;
+    color: #67EAD2;
+    background-color: #535353;
+    width: 143px;
+    height: 34px;
+    font-size: 12px;
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    outline: none; }
