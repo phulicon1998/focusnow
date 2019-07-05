@@ -3,9 +3,16 @@
     display: flex;
     flex-direction: column;
     padding-top: 37px;
-    width: 50px;
+    min-width: 50px;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    cursor: move;
+    -webkit-app-region: drag;
 
     > a {
+        -webkit-app-region: no-drag;
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -14,10 +21,13 @@
         outline: none !important;
         background-color: transparent;
         padding: none;
-        cursor: pointer;
         transition-duration: .5s;
 
         path {
+            transition-duration: .5s;
+        }
+
+        svg {
             transition-duration: .5s;
         }
 
@@ -25,12 +35,11 @@
             background-color: #5F5F5F;
 
             > svg {
-                -webkit-filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.1));
-                filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.1));
-                transition-duration: .5s;
+                -webkit-filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.2));
+                filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.2));
 
-                > path {
-                    fill: #B6B6B6 !important;
+                path {
+                    fill: #dadada !important;
                 }
             }
         }
@@ -39,11 +48,10 @@
             background-color: #5B6765;
 
             > svg {
-                -webkit-filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.1));
-                filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.1));
-                transition-duration: .5s;
-                
-                > path {
+                -webkit-filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.2));
+                filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.2));
+
+                path {
                     fill: #67EAD2 !important;
                 }
             }

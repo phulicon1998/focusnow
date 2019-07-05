@@ -3,6 +3,7 @@ const {app, BrowserWindow, ipcMain} = require("electron");
 const path = require('path');
 const glob = require('glob');
 const isDev = require("electron-is-dev");
+require("../src/service/dbControl");
 
 ipcMain.on("restore-main", restoreMain);
 
@@ -18,6 +19,7 @@ function createWindow() {
         height: 300,
         resizable: false,
         alwaysOnTop: true,
+        frame: false,
         webPreferences: {
             nodeIntegration: true,
             webSecurity: false

@@ -42,7 +42,7 @@ function removeOldHostLink(host) {
 function addLinkToHost(list) {
     let content = [];
     content.push(" \n# START FOCUS APP - DO NOT TOUCH\n ");
-    content.push(redirectPath + " www.facebook.com");
+    content.push(redirectPath + " tv.zing.vn");
     content.push(" \n# END FOCUS APP - DO NOT TOUCH");
     return content.join("\n");
 }

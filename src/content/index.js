@@ -1,24 +1,31 @@
-import MainContain from "../contains/views/Main";
 import StartContain from "../contains/views/Start";
+import FocusContain from "../contains/views/Focus";
 import BlockContain from "../contains/views/Block";
+import SettingContain from "../contains/views/Setting";
+
+import Setting from "./Setting";
 
 const path = [
     {
         path: "/",
-        component: MainContain,
-        exact: true
+        comp: StartContain,
+        exact: true,
+        display: {}
     },
     {
-        path: "/start",
-        component: StartContain
+        path: "/focus",
+        comp: FocusContain,
+        display: {}
     },
     {
         path: "/block",
-        component: BlockContain
+        comp: BlockContain,
+        display: {}
     },
     {
         path: "/setting",
-        component: BlockContain
+        comp: SettingContain,
+        display: Setting
     }
 ]
 

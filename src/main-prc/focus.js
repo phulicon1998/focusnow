@@ -4,9 +4,9 @@ const isDev = require("electron-is-dev");
 
 let startWin;
 
-ipcMain.on("start-focus", winStart);
+ipcMain.on("start-focus", winFocus);
 
-function winStart() {
+function winFocus() {
     let currentWin = BrowserWindow.getFocusedWindow();
     currentWin.hide();
 
@@ -19,7 +19,7 @@ function winStart() {
         }
     })
 
-    startWin.loadURL(isDev ? "http://localhost:3000/start" : `file://${path.join(__dirname, '../build/index.html')}`);
+    startWin.loadURL(isDev ? "http://localhost:3000/focus" : `file://${path.join(__dirname, '../build/index.html')}`);
     startWin.show();
 
     startWin.on("closed", () => startWin = null);

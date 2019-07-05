@@ -1,21 +1,15 @@
 import React from "react";
-import "../../assets/css/Start/start.css";
+import AppLayout from "../layout/AppLayout";
 
-const Start = ({total, left, round, reset, pause, cancel}) => (
-    <div className="App">
-        <h1>Focusing...</h1>
-        <div className="container">
-            <p>Rounds: {round}</p>
-            <div className="timeBox">
-                <div style={{width: `${left/total*100}%`}}></div>
-            </div>
-            <div className="btnBar">
-                <button onClick={reset}>Reset</button>
-                <button onClick={pause}>Pause</button>
-                <button onClick={cancel}>Cancel</button>
+const Start = ({scrFocus, ...props}) => (
+    <AppLayout {...props}>
+        <div className="App">
+            <h1>Main screen</h1>
+            <div>
+                <button onClick={scrFocus}>Start focus</button>
             </div>
         </div>
-    </div>
+    </AppLayout>
 )
 
 export default Start;
