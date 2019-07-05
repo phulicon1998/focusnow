@@ -7,21 +7,17 @@ import {ReactComponent as Unlink} from "../../assets/icon/unlink.svg";
 
 const Start = ({scrFocus, ...props}) => (
     <AppLayout {...props}>
-        <div className="App">
-            <h1 className="title">Start</h1>
-            <div className="remind-start">
-                <div className="remind">
-                    <div className="imgRemind">
-                        <Chrome/>
-                        <span className="undo">
-                            <Undo/>
-                        </span>
-                        <Unlink/>
-                    </div>
-                    <p className="message">Restart browser to take effect with blocked site</p>
-                </div>
-                <button onClick={scrFocus}>Begin focus now</button>
+        <h1 className="title">Start</h1>
+        <div className="remind">
+            <div>
+                <Chrome/>
+                <span><Undo/></span>
+                <Unlink/>
             </div>
+            <p>Restart browser to take effect with blocked site</p>
+        </div>
+        <div className="btnStart">
+            <button onClick={scrFocus}>Begin focus now</button>
         </div>
     </AppLayout>
 )

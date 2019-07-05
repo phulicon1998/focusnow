@@ -8,24 +8,34 @@
   margin-bottom: 25px;
   justify-content: space-between; }
 
-.remind-start {
+.remind {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  margin-bottom: 27px; }
+  .remind > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    width: 100%; }
+    .remind > div > span {
+      margin-right: 22px;
+      margin-left: 22px; }
+  .remind > p {
+    text-align: center;
+    line-height: 1.5;
+    padding-right: 15px;
+    padding-left: 15px;
+    font-size: 12px;
+    color: #D0D0D0; }
+
+.btnStart {
   display: flex;
-  flex-direction: column;
-  align-items: center; }
-  .remind-start .remind {
-    margin-bottom: 21px; }
-    .remind-start .remind .imgRemind {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-evenly; }
-      .remind-start .remind .imgRemind .undo {
-        margin-top: 11px; }
-    .remind-start .remind p {
-      margin-left: 20px;
-      margin-top: 24px;
-      font-size: 12px;
-      color: #D0D0D0; }
-  .remind-start button {
+  width: 100%;
+  justify-content: center; }
+  .btnStart button {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
     border: none;
     border-radius: 3px;
     color: #67EAD2;
@@ -36,4 +46,6 @@
     box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.15);
     display: flex;
     align-items: center;
-    justify-content: center; }
+    justify-content: center;
+    cursor: pointer;
+    outline: none; }

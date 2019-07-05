@@ -1,6 +1,6 @@
 import React from "react";
 import AppLayout from "../../contains/layout/AppLayout";
-import "../../assets/css/Setting/setting.css";
+import "../../assets/css/Option/option.css";
 
 import {ReactComponent as Save} from "../../assets/icon/save.svg";
 import {ReactComponent as Check} from "../../assets/icon/check.svg";
