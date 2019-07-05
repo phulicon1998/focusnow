@@ -16,7 +16,6 @@ async function loadOption() {
 
 async function saveOption(e, option) {
     try {
-        console.log(option);
         await db.get("time").assign(option).write();
     } catch (err) {
         console.log(err);

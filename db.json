@@ -1,11 +1,11 @@
 {
   "block": [],
   "time": {
-    "work": 28,
-    "short": 7,
-    "long": 21,
-    "round": 6,
+    "work": 25,
+    "short": 5,
+    "long": 20,
+    "round": 4,
     "onStart": true,
-    "minimize": true
+    "minimize": false
   }
 }

@@ -35,9 +35,8 @@ export default function OptionContain(props){
     const add = (key, val) => setState(prev => ({...prev, [key]: ++val}));
     const min = (key, val) => setState(prev => ({...prev, [key]: --val}));
 
-    function save() {
-        console.log("run");
-        ipc.send("save-option", state);
+    function save(data=state) {
+        ipc.send("save-option", data);
         setEdit(false);
     }
 

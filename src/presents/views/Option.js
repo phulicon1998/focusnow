@@ -30,8 +30,8 @@ const Option = ({title, work, short, long, round, edit, doEdit, save, onStart, m
     <AppLayout {...props}>
         <h3 className={`setting ${edit && "edit"}`}>{title} {
             edit
-            ? <button onClick={save}><Save/> Save</button>
-            : <button onClick={doEdit.bind(this, true)}>Edit</button>
+            ? <button onClick={save.bind(this, undefined)}><Save/> Save</button>
+            : <button onClick={doEdit.bind(true)}>Edit</button>
         } </h3>
         <div className="time-setting">
             <TimeItem
