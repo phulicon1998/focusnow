@@ -1,7 +1,6 @@
 import React from "react";
-import AppLayout from "../layout/AppLayout";
 import "../../assets/css/Start/start.css";
-
+import AppLayout from "../../contains/layout/AppLayout";
 import {ReactComponent as Chrome} from "../../assets/icon/chrome.svg";
 import {ReactComponent as Undo} from "../../assets/icon/undo.svg";
 import {ReactComponent as Unlink} from "../../assets/icon/unlink.svg";
