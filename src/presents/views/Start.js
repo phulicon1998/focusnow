@@ -1,5 +1,5 @@
 import React from "react";
-import AppLayout from "../layout/AppLayout";
+import AppLayout from "../../contains/layout/AppLayout";
 
 const Start = ({scrFocus, ...props}) => (
     <AppLayout {...props}>

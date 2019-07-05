@@ -1,5 +1,5 @@
 import React from "react";
-import AppLayout from "../layout/AppLayout";
+import AppLayout from "../../contains/layout/AppLayout";
 
 const Block = ({block, unblock, ...props}) => (
     <AppLayout {...props}>

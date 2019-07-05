@@ -58,7 +58,8 @@
   width: 278px;
   max-height: 100%;
   overflow: auto;
-  cursor: default; }
+  cursor: default;
+  user-select: none; }
 
 ::-webkit-scrollbar {
   width: 10px; }
