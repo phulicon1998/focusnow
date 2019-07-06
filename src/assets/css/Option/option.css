@@ -1,4 +1,4 @@
-.setting {
+.option {
   width: 100%;
   display: flex;
   align-items: center;
@@ -7,13 +7,13 @@
   margin: 0;
   margin-bottom: 25px;
   justify-content: space-between; }
-  .setting.edit {
+  .option.edit {
     justify-content: flex-start; }
-    .setting.edit > button {
+    .option.edit > button {
       margin-left: 10px; }
-      .setting.edit > button > svg {
+      .option.edit > button > svg {
         margin-right: 6px; }
-  .setting > button {
+  .option > button {
     cursor: pointer;
     outline: none;
     border: none;
