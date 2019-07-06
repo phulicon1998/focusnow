@@ -1,6 +1,7 @@
-const {BrowserWindow, ipcMain} = require("electron");
+const {BrowserWindow, ipcMain, screen} = require("electron");
 const path = require("path");
 const isDev = require("electron-is-dev");
+const {width} = (screen.getPrimaryDisplay()).size;
 
 let startWin;
 
@@ -11,13 +12,18 @@ function winFocus() {
     currentWin.hide();
 
     startWin = new BrowserWindow({
-        width: 600,
-        height: 400,
+        width: 280,
+        height: 50,
+        frame: false,
+        resizable: false,
+        alwaysOnTop: true,
+        transparent: true,
         webPreferences: {
-            nodeIntegration: true,
-            webSecurity: false
+            nodeIntegration: true
         }
     })
+
+    startWin.setPosition(width - 300, 80);
 
     startWin.loadURL(isDev ? "http://localhost:3000/focus" : `file://${path.join(__dirname, '../build/index.html')}`);
     startWin.show();

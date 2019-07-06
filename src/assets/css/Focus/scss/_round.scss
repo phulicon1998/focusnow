@@ -1,0 +1,16 @@
+.round {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    width: 25px;
+    height: 27px;
+    color: #67EAD2;
+    background-color: #373737;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+
+    -webkit-app-region: drag;
+}

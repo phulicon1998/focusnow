@@ -1,20 +1,21 @@
 import React from "react";
 import "../../assets/css/Focus/focus.css";
 
+import {ReactComponent as Fplay} from "../../assets/icon/f_play.svg";
+import {ReactComponent as Fpause} from "../../assets/icon/f_pause.svg";
+import {ReactComponent as Freset} from "../../assets/icon/f_reset.svg";
+import {ReactComponent as Fcancel} from "../../assets/icon/f_cancel.svg";
+
+
 const Focus = ({total, left, round, reset, pause, cancel}) => (
-    <div className="App">
-        <h1>Focusing...</h1>
-        <div className="container">
-            <p>Rounds: {round}</p>
-            <div className="timeBox">
-                <div style={{width: `${left/total*100}%`}}></div>
-            </div>
-            <div className="btnBar">
-                <button onClick={reset}>Reset</button>
-                <button onClick={pause}>Pause</button>
-                <button onClick={cancel}>Cancel</button>
-            </div>
+    <div className="container">
+        <span className="round">5</span>
+        <span className="progress-bar"></span>
+        <div className="control">
+            <button onClick={pause} className="play"><Fplay /></button>
+            <button onClick={reset}><Freset /></button>
         </div>
+        <button className="cancel" onClick={cancel}><Fcancel /></button>
     </div>
 )
 

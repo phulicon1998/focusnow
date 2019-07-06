@@ -14,10 +14,10 @@ export default function FocusContain(props) {
     const {total, left, cont} = state;
     let interval;
 
-    useEffect(() => {
-        decrease();
-        return () => clearInterval(interval);
-    })
+    // useEffect(() => {
+    //     decrease();
+    //     return () => clearInterval(interval);
+    // })
 
     function decrease(cb) {
         if(cont) {

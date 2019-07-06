@@ -1,0 +1,22 @@
+.cancel {
+    border: none;
+    outline: none;
+    color: #A9A9A9;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    width: 25px;
+    height: 27px;
+    padding: 0;
+    cursor: pointer;
+
+    path {
+        transition: .5s;
+    }
+
+    &:hover {
+        path {
+            fill: #D8857B !important;
+        }
+    }
+}
