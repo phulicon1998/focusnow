@@ -28,7 +28,7 @@ const CheckItem = ({text, check, name, doCheck}) => (
 
 const Option = ({title, work, short, long, round, edit, doEdit, save, onStart, minimize, add, min, doCheck, ...props}) => (
     <AppLayout {...props}>
-        <h3 className={`setting ${edit && "edit"}`}>{title} {
+        <h3 className={`option ${edit && "edit"}`}>{title} {
             edit
             ? <button onClick={save.bind(this, undefined)}><Save/> Save</button>
             : <button onClick={doEdit.bind(true)}>Edit</button>
