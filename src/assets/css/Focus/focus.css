@@ -44,19 +44,24 @@
     transition: .2s; }
     .control > button:hover {
       background-color: rgba(84, 84, 84, 0.8); }
-    .control > button.play svg {
+    .control > button.play > svg {
       -webkit-filter: drop-shadow(2px 4px 2px rgba(0, 0, 0, 0.3));
       filter: drop-shadow(2px 4px 2px rgba(0, 0, 0, 0.3)); }
 
-.progress-bar {
+.progress-box {
   width: 159px;
-  height: 15px;
-  background-color: #8AE9D7;
-  border-radius: 3px;
+  height: 27px;
+  background-color: transparent;
   margin-left: 7px;
   margin-right: 7px;
-  box-shadow: 2px 5px 3px rgba(0, 0, 0, 0.15);
-  -webkit-app-region: drag; }
+  -webkit-app-region: drag;
+  display: flex;
+  align-items: center; }
+  .progress-box > div {
+    border-radius: 3px;
+    height: 15px;
+    box-shadow: 2px 5px 3px rgba(0, 0, 0, 0.15);
+    transition: .2s; }
 
 .round {
   display: flex;
