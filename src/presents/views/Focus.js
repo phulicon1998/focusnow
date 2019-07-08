@@ -6,13 +6,13 @@ import {ReactComponent as Fpause} from "../../assets/icon/f_pause.svg";
 import {ReactComponent as Freset} from "../../assets/icon/f_reset.svg";
 import {ReactComponent as Fcancel} from "../../assets/icon/f_cancel.svg";
 
-const Focus = ({total, left, stage, reset, pause, cancel, cont, breakTime}) => (
+const Focus = ({total, left, stage, reset, pause, cancel, cont, breakTime, changeProgressColor}) => (
     <div className="container">
         <span className="round">{breakTime ? "b" : stage}</span>
         <div className="progress-box">
             <div style={{
                 width: `${(left/total)*159}px`,
-                backgroundColor: `${breakTime ? "#CEA791" : "#8AE9D7"}`
+                backgroundColor: `${changeProgressColor()}`
             }}></div>
         </div>
         <div className="control">

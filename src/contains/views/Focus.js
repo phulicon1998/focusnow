@@ -5,40 +5,57 @@ const electron = window.require("electron");
 const ipc = electron.ipcRenderer;
 
 export default function FocusContain(props) {
-    const [progress, setProgress] = useState({
-        total: 10,
-        left: 10,
-        stage: 5,
-        cont: true,
+    let [time, setTime] = useState();
+    let [progress, setProgress] = useState({
+        total: 0,
+        left: 0,
+        stage: 0,
+        cont: false,
         breakTime: false
     });
-    const [time] = useState({
-        work: 10,
-        short: 5,
-        long: 10,
-        round: 5
-    })
     let {left, cont, breakTime, stage} = progress;
     let interval;
 
     useEffect(() => {
+        let isLoad = false;
+        ipc.send("get-focus");
+        if(!isLoad) {
+            ipc.on("load-focus", (e, data) => {
+                if(!isLoad) setTime(data)
+            });
+        };
+        return () => isLoad = true;
+    }, []);
+
+    useEffect(() => {
+        let isLoad = false;
+        if(!isLoad && time){
+            setProgress(prev => ({
+                ...prev,
+                total: time.work,
+                left: time.work,
+                stage: time.round,
+                cont: true
+            }))
+        }
+        return () => isLoad = true;
+    }, [time]);
+
+    useEffect(() => {
         decrease(reset);
         return () => clearInterval(interval);
-    })
-
-    function getProgressType() {
-        if(breakTime) return time.work;
-        return stage - 1 > 0 ? time.short : time.long;
-    }
+    });
 
     function decrease(cb) {
         if(cont) {
             interval = setInterval(() => {
                 if(left === 0){
                     if(stage === 0) {
+                        ipc.send("finish");
                         clearInterval(interval);
                         return cb ? cb() : null;
                     }
+                    if(!breakTime) ipc.send("break-time");
                     setProgress(prev => ({
                         ...prev,
                         breakTime: !prev.breakTime,
@@ -47,6 +64,7 @@ export default function FocusContain(props) {
                         stage: prev.breakTime ? prev.stage : prev.stage - 1
                     }))
                 }
+                if(stage !== time.round && left === time.work && !breakTime) ipc.send("work-time");
                 if(left !== 0) setProgress(prev => ({...prev, left: prev.left - 1 }));
             }, 1000);
         }
@@ -63,6 +81,11 @@ export default function FocusContain(props) {
         });
     }
 
+    function getProgressType() {
+        if(breakTime) return time.work;
+        return stage - 1 > 0 ? time.short : time.long;
+    }
+
     function pause() {
         if(cont) {
             clearInterval(interval);
@@ -74,11 +97,18 @@ export default function FocusContain(props) {
 
     const cancel = () => ipc.send("restore-main");
 
+    function changeProgressColor() {
+        if(cont && breakTime) return "#CEA791";
+        if(cont && !breakTime) return "#8AE9D7";
+        return "#a7a7a7";
+    }
+
     return <Focus
         {...progress}
         {...props}
         reset={reset}
         pause={pause}
         cancel={cancel}
+        changeProgressColor={changeProgressColor}
     />
 }
