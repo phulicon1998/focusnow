@@ -2,47 +2,41 @@ import React from "react";
 import "../../assets/css/Block/block.css"
 import AppLayout from "../../contains/layout/AppLayout";
 
-import {ReactComponent as Grin} from "../../assets/icon/grin.svg";
+import {ReactComponent as Face} from "../../assets/icon/grin.svg";
 import {ReactComponent as Check} from "../../assets/icon/check.svg";
-import {ReactComponent as UnCheck} from "../../assets/icon/uncheck.svg";
-import {ReactComponent as Remove} from "../../assets/icon/delete.svg";
-import {ReactComponent as UnRemove} from "../../assets/icon/undelete.svg";
+import {ReactComponent as Uncheck} from "../../assets/icon/uncheck.svg";
+import {ReactComponent as Remove} from "../../assets/icon/undelete.svg";
 
-const Notify = (list, ...props) => (
-    <div className="notify">
-        <Grin {...props}/>
-        <p> {`${list===[]} ? 'There is no blocked site'`} </p>
+const Empty = (list, ...props) => (
+    <div className="empty">
+        <Face {...props}/>
+        <p> There is no blocked site</p>
     </div>
 )
 
-const CRD = () => (
-    <div className="blockSite">
-        <Check/>
-        <span> https://jsfiddle.net </span>
+const Link = ({active, link}) => (
+    <div className={`link ${active ? "active" : ""}`}>
+        <div>
+            {active ? <Check/> : <Uncheck />}
+            <span> {link} </span>
+        </div>
         <Remove/>
     </div>
 );
 
-const CRDs = () => (
-    <div className="blockSite">
-        <UnCheck/>
-        <span> https://jsfiddle.net </span>
-        <UnRemove/>
-    </div>
-);
-
-const Block = ({block, unblock, ...props}) => (
+const Block = ({block, unblock, list, link, ...props}) => (
     <AppLayout {...props}>
         <h3 className="block">Block sites</h3>
         <div className="siteInput">
-            <input type="text" placeholder="Enter link here..."/>
+            <input type="text" name="link" placeholder="Enter link here..." value={link}/>
         </div>
         <div className="siteList">
-            <CRD/>
-            <CRDs/>
+            {
+                list.length > 0
+                ? list.map((v, i) => (<Link key={i} {...v}/>))
+                : <Empty />
+            }
         </div>
-        {/* <button onClick={block}>Click here to start block</button>
-        <button onClick={unblock}>Click here to unblock</button> */}
     </AppLayout>
 )
 

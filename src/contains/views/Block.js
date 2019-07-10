@@ -4,19 +4,39 @@ import Block from "../../presents/views/Block";
 const electron = window.require('electron');
 const ipc = electron.ipcRenderer;
 
-export default function BlockContain(props) {  
+export default function BlockContain(props) {
     // // const [list, setList] = useState([]);
     const [state, setState] = useState({
-        link: '',
-        id: '',
-        list: [],
+        link: "",
+        list: [
+            {
+                link: "www.facebook.com",
+                active: true
+            },
+            {
+                link: "www.facebook.com",
+                active: true
+            },
+            {
+                link: "www.facebook.com",
+                active: false
+            },
+            {
+                link: "www.facebook.com",
+                active: false
+            },
+            {
+                link: "www.facebook.com",
+                active: false
+            },
+        ],
         actived: true
     });
     const {link, id, actived} = state;
 
     const hdChange = (e) => {
         setState({
-            [e.targe.name]: e.target.value
+            [e.target.name]: e.target.value
         })
     }
 
