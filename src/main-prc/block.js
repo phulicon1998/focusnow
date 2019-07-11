@@ -1,5 +1,5 @@
 const {BrowserWindow, ipcMain} = require("electron");
-const ids = require("short-id");
+const ids = require("shortid");
 // const {promisify} = require("util");
 // const fs = require("fs");
 const db = require("../service/dbControl");
