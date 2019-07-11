@@ -1,20 +1,27 @@
 import React from "react";
 import "../../assets/css/Focus/focus.css";
 
-const Focus = ({total, left, round, reset, pause, cancel}) => (
-    <div className="App">
-        <h1>Focusing...</h1>
-        <div className="container">
-            <p>Rounds: {round}</p>
-            <div className="timeBox">
-                <div style={{width: `${left/total*100}%`}}></div>
-            </div>
-            <div className="btnBar">
-                <button onClick={reset}>Reset</button>
-                <button onClick={pause}>Pause</button>
-                <button onClick={cancel}>Cancel</button>
-            </div>
+import {ReactComponent as Fplay} from "../../assets/icon/f_play.svg";
+import {ReactComponent as Fpause} from "../../assets/icon/f_pause.svg";
+import {ReactComponent as Freset} from "../../assets/icon/f_reset.svg";
+import {ReactComponent as Fcancel} from "../../assets/icon/f_cancel.svg";
+
+const Focus = ({total, left, stage, reset, pause, cancel, cont, breakTime, changeProgressColor}) => (
+    <div className="container">
+        <span className="round">{breakTime ? "b" : stage}</span>
+        <div className="progress-box">
+            <div style={{
+                width: `${(left/total)*159}px`,
+                backgroundColor: `${changeProgressColor()}`
+            }}></div>
         </div>
+        <div className="control">
+            <button onClick={pause} className={cont ? "pause" : "play"}>
+                {cont ? <Fpause /> : <Fplay />}
+            </button>
+            <button onClick={reset}><Freset /></button>
+        </div>
+        <button className="cancel" onClick={cancel}><Fcancel /></button>
     </div>
 )
 

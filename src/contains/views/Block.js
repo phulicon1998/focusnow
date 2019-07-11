@@ -1,34 +1,39 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Block from "../../presents/views/Block";
 
 const electron = window.require('electron');
 const ipc = electron.ipcRenderer;
 
-export default function BlockContain(props) {  
-    // // const [list, setList] = useState([]);
+export default function BlockContain(props) {
     const [state, setState] = useState({
-        link: '',
-        id: '',
-        list: [],
-        actived: true
+        link: "",
+        list: []
     });
-    const {link, id, actived} = state;
+
+    async function load() {
+        let isLoad = false;
+        if(!isLoad) {
+            ipc.send("load-site");
+            ipc.on("site-data", (e, list) => {
+                if(!isLoad) setState(prev => ({...prev, list}));
+            })
+        }
+        return () => isLoad = true;
+    }
+
+    useEffect(() => {
+        load();
+    }, []);
 
     const hdChange = (e) => {
-        setState({
-            [e.targe.name]: e.target.value
-        })
+        let {name, value} = e.target;
+        setState(prev => ({...prev, [name]: value}));
     }
 
     function hdSubmit(e) {
         e.preventDefault();
-        let{link, id, actived, list} = state;
-        if(id === ""){
-            list = [...list, {link, actived}];
-        }else {
-            list[id] = {...list[id], link, actived: false};
-        }
-        setState({...state, list, link: "", id: "", actived: true});
+        ipc.send("add-site", state.link);
+        load();
     }
 
     function hdActive(id) {
@@ -48,10 +53,10 @@ export default function BlockContain(props) {
     return <Block
         {...props}
         {...state}
-        hdChange = {hdChange}
-        hdSubmit = {hdSubmit}
-        hdRemove = {hdRemove}
-        hdActive = {hdActive}
+        hdChange={hdChange}
+        hdSubmit={hdSubmit}
+        hdRemove={hdRemove}
+        hdActive={hdActive}
         block={block}
         unblock={unblock}
     />
