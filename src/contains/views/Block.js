@@ -68,10 +68,10 @@ export default function BlockContain(props) {
     return <Block
         {...props}
         {...state}
-        hdChange = {hdChange}
-        hdSubmit = {hdSubmit}
-        hdRemove = {hdRemove}
-        hdActive = {hdActive}
+        hdChange={hdChange}
+        hdSubmit={hdSubmit}
+        hdRemove={hdRemove}
+        hdActive={hdActive}
         block={block}
         unblock={unblock}
     />

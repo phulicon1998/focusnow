@@ -55,22 +55,20 @@
     .link > div > svg {
       transition-duration: .4s; }
   .link > svg > path {
-    transition: .2s; }
+    transition: .5s; }
   .link.active > div > span {
     color: #E3E3E3; }
   .link.active > div > svg {
     -webkit-filter: drop-shadow(2px 4px 2px rgba(0, 0, 0, 0.15));
     filter: drop-shadow(2px 4px 2px rgba(0, 0, 0, 0.15)); }
   .link.active > svg > path {
-    fill: #D97D72 !important; }
+    fill: #bfbfbf !important; }
   .link:hover > div > span {
     color: #E3E3E3; }
   .link:hover > div > svg {
     -webkit-filter: drop-shadow(2px 4px 2px rgba(0, 0, 0, 0.15));
     filter: drop-shadow(2px 4px 2px rgba(0, 0, 0, 0.15)); }
   .link:hover > svg > path {
-    fill: #bfbfbf !important; }
-  .link.active:hover > svg > path {
     fill: #D97D72 !important; }
 
 .siteList {
