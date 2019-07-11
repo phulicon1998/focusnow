@@ -7,14 +7,14 @@ import {ReactComponent as Check} from "../../assets/icon/check.svg";
 import {ReactComponent as Uncheck} from "../../assets/icon/uncheck.svg";
 import {ReactComponent as Remove} from "../../assets/icon/undelete.svg";
 
-const Empty = (list, ...props) => (
+const Empty = ({list, ...props}) => (
     <div className="empty">
         <Face {...props}/>
         <p> There is no blocked site</p>
     </div>
 )
 
-const Link = ({active, link}) => (
+const Link = ({active, link, id}) => (
     <div className={`link ${active ? "active" : ""}`}>
         <div>
             {active ? <Check/> : <Uncheck />}
@@ -24,11 +24,11 @@ const Link = ({active, link}) => (
     </div>
 );
 
-const Block = ({block, unblock, list, link, ...props}) => (
+const Block = ({block, unblock, list, link, hdChange, ...props}) => (
     <AppLayout {...props}>
         <h3 className="block">Block sites</h3>
         <div className="siteInput">
-            <input type="text" name="link" placeholder="Enter link here..." value={link}/>
+            <input type="text" name="link" placeholder="Enter link here..." value={link} onChange={hdChange}/>
         </div>
         <div className="siteList">
             {
