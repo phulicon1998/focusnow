@@ -2,9 +2,19 @@ const {BrowserWindow, ipcMain, screen} = require("electron");
 const path = require("path");
 const isDev = require("electron-is-dev");
 const notifier = require("node-notifier");
-const {width} = (screen.getPrimaryDisplay()).size;
 const db = require("../service/dbControl");
+const {promisify} = require("util");
+const fs = require("fs");
 
+const readFile = promisify(fs.readFile);
+const appendFile = promisify(fs.appendFile);
+const writeFile = promisify(fs.writeFile);
+
+const {width} = (screen.getPrimaryDisplay()).size;
+const filePath = "C:\\Windows\\System32\\drivers\\etc\\hosts";
+const redirectPath = "127.0.0.1";
+const beginLine = "# BEGIN LINE - FOCUS APP - DO NOT TOUCH"
+const endLine = "# END LINE - FOCUS APP - DO NOT TOUCH";
 let startWin;
 
 ipcMain.on("start-focus", winFocus);
@@ -65,6 +75,41 @@ async function getFocus() {
     try {
         const {work, short, long, round} = await db.get("time").value();
         return startWin.webContents.send("load-focus", {work: work*60, short: short*60, long: long*60, round});
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+function clearHost(host) {
+    let start = host.findIndex(v => v === beginLine);
+    let end = host.findIndex(v => v === endLine);
+    if(start !== -1 && end !== -1) host.splice(start-1, end+1);
+    return host.join("\n");
+}
+
+function writeHost(list) {
+    let content = [];
+    content.push(`" \n${beginLine}\n "`);
+    content.push(redirectPath + " tv.zing.vn");
+    content.push(` \n${endLine}`);
+    return content.join("\n");
+}
+
+async function block() {
+    try {
+        await clearBlock();
+        let content = writeHost();
+        await appendFile(filePath, content);
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+async function clearBlock() {
+    try {
+        let host = (await readFile(filePath)).toString().split("\n");
+        let removedHost = clearHost(host);
+        await writeFile(filePath, removedHost);
     } catch(err) {
         console.log(err);
     }
