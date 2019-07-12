@@ -28,6 +28,7 @@ const Block = ({block, unblock, list, link, hdChange, ...props}) => (
     <AppLayout {...props}>
         <h3 className="block">Block sites</h3>
         <div className="siteInput">
+            <button >Add</button>
             <input type="text" name="link" placeholder="Enter link here..." value={link} onChange={hdChange}/>
         </div>
         <div className="siteList">
