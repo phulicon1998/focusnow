@@ -10,27 +10,27 @@ export default function BlockContain(props) {
         list: []
     });
 
-    async function load() {
+    function load() {
         let isLoad = false;
         if(!isLoad) {
             ipc.send("load-site");
             ipc.on("site-data", (e, list) => {
-                if(!isLoad) setState(prev => ({...prev, list}));
+                if(!isLoad) setState(prev => ({...prev, list, link: ""}));
             })
         }
         return () => isLoad = true;
     }
 
     useEffect(() => {
-        load();
+        return load();
     }, []);
 
-    const hdChange = (e) => {
+    function hdChange(e) {
         let {name, value} = e.target;
         setState(prev => ({...prev, [name]: value}));
     }
 
-    function hdSubmit(e) {
+    function hdAdd(e) {
         e.preventDefault();
         ipc.send("add-site", state.link);
         load();
@@ -38,20 +38,24 @@ export default function BlockContain(props) {
 
     function hdActive(id) {
         let {list} = state;
-        setState({...state, ...list[id], id});
+        let active = list.filter(v => v.id === id)[0].active;
+        ipc.send("active-site", id, !active);
+        list.forEach(v => { if(v.id === id) v.active = !v.active; });
+        setState(prev => ({...prev, list}));
     }
 
-    function hdRemove(i) {
+    function hdRemove(id) {
         let {list} = state;
-        list.splice(i, 1);
-        setState({...state, list});
+        ipc.send("remove-site", id);
+        list = list.filter(v => v.id !== id);
+        setState(prev => ({...prev, list}));
     }
 
     return <Block
         {...props}
         {...state}
         hdChange={hdChange}
-        hdSubmit={hdSubmit}
+        hdAdd={hdAdd}
         hdRemove={hdRemove}
         hdActive={hdActive}
     />

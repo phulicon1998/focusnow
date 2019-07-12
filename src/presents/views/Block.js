@@ -14,27 +14,34 @@ const Empty = ({list, ...props}) => (
     </div>
 )
 
-const Link = ({active, link, id}) => (
-    <div className={`link ${active ? "active" : ""}`}>
+const Link = ({active, link, id, hdRemove, hdActive}) => (
+    <div className={`link ${active ? "active" : ""}`} onClick={hdActive.bind(this, id)}>
         <div>
             {active ? <Check/> : <Uncheck />}
-            <span> {link} </span>
+            <span>www.{link} </span>
         </div>
-        <Remove/>
+        <Remove onClick={hdRemove.bind(this, id)}/>
     </div>
 );
 
-const Block = ({block, unblock, list, link, hdChange, ...props}) => (
+const Block = ({block, unblock, list, link, hdChange, hdAdd, hdRemove, hdActive, ...props}) => (
     <AppLayout {...props}>
         <h3 className="block">Block sites</h3>
         <div className="siteInput">
-            <button >Add</button>
-            <input type="text" name="link" placeholder="Enter link here..." value={link} onChange={hdChange}/>
+            <button onClick={hdAdd}>Add</button>
+            <input type="text" name="link" placeholder="Enter a link here..." value={link} onChange={hdChange}/>
         </div>
         <div className="siteList">
             {
                 list.length > 0
-                ? list.map((v, i) => (<Link key={i} {...v}/>))
+                ? list.map((v, i) => (
+                    <Link
+                        key={i}
+                        {...v}
+                        hdRemove={hdRemove}
+                        hdActive={hdActive}
+                    />
+                ))
                 : <Empty />
             }
         </div>

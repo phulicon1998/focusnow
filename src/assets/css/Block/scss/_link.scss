@@ -2,7 +2,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     font-family: "Montserrat", sans-serif;
     font-weight: 300;
     margin-bottom: 15px;
@@ -16,14 +15,16 @@
             transition: .5s;
             margin-left: 18px;
             font-size: 12px;
-            color: #C7C7C7;
+            color: #bbbbbb;
         }
 
         > svg { transition-duration: .4s; }
     }
 
     > svg {
-        > path { transition: .5s; }
+        > path {
+            transition: .5s;
+        }
     }
 
     &.active {
@@ -53,7 +54,15 @@
         }
 
         > svg {
-            > path { fill: #D97D72 !important; }
+            > path {
+                fill: #bfbfbf !important;
+            }
+
+            &:hover {
+                > path {
+                    fill: #D97D72 !important;
+                }
+            }
         }
     }
 }

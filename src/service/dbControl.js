@@ -6,7 +6,7 @@ function initDb(){
     const db = low(adapter);
     if(!db.has("block").value()){
         db.defaults({
-            block: [],
+            site: [],
             time: {
                 work: 25,
                 short: 5,

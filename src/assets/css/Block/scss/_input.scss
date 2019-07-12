@@ -1,24 +1,26 @@
 .siteInput {
-    margin-bottom: 20px;
     display: flex;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    margin-bottom: 20px;
+    background-color: #ffffff25;
+
+    border-radius: 3px;
+    transition-duration: .5s;
 
     > input {
+        font-family: "Montserrat", sans-serif;
         background-color: transparent;
         border: none;
-        border-bottom: 1px solid #BFBFBF;
-        color: white;
-        font-size: 12px;
-        padding-bottom: 10px;
-        padding-left: 50px;
-        width: 100%;
-        font-family: "Montserrat", sans-serif;
         outline: none;
-        transition: .2s;
-        position: relative;
-
-        &:focus {
-            border-bottom: 1px solid #dedede;
-        }
+        color: #eaeaea;
+        font-size: 12px;
+        width: 100%;
+        transition: .5s;
+        border-radius: 5px;
+        margin-left: 8px;
 
         &::placeholder {
             font-size: 12px;
@@ -27,19 +29,25 @@
     }
 
     > button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-family: "Montserrat", sans-serif;
         cursor: pointer;
         outline: none;
         border: none;
         border-radius: 3px;
         color: #67EAD2;
         background-color: #535353;
-        padding: 5px 10px 5px 10px;
         font-size: 11px;
-        box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.15);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        bottom: 171px;
+        width: 40px;
+        height: 23px;
+        box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    &:focus-within {
+        background-color: #ffffff17;
+        box-shadow: 1px 2px 7px rgba(0, 0, 0, 0.1);
     }
 }
