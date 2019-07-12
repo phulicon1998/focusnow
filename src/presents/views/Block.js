@@ -36,8 +36,8 @@ const Block = ({block, unblock, list, link, hdChange, hdAdd, hdRemove, hdActive,
                 list.length > 0
                 ? list.map((v, i) => (
                     <Link
-                        key={i}
                         {...v}
+                        key={i}
                         hdRemove={hdRemove}
                         hdActive={hdActive}
                     />
