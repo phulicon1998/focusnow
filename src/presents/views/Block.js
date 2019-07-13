@@ -15,8 +15,8 @@ const Empty = ({list, ...props}) => (
 )
 
 const Link = ({active, link, id, hdRemove, hdActive}) => (
-    <div className={`link ${active ? "active" : ""}`} onClick={hdActive.bind(this, id)}>
-        <div>
+    <div className={`link ${active ? "active" : ""}`}>
+        <div onClick={hdActive.bind(this, id)}>
             {active ? <Check/> : <Uncheck />}
             <span>www.{link} </span>
         </div>

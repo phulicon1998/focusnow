@@ -4,30 +4,16 @@
       "id": "FgwYAGEyF",
       "link": "ahkbsad",
       "active": false
-    },
-    {
-      "id": "WBCGctF0Q",
-      "link": "facebook.com",
-      "active": false
-    },
-    {
-      "id": "sEBabhoYd",
-      "link": "aa",
-      "active": true
-    },
-    {
-      "id": "e8AIjyiNK",
-      "link": "aasd",
-      "active": true
     }
   ],
   "time": {
-    "work": 25,
+    "work": 22,
     "short": 5,
     "long": 20,
-    "round": 4,
-    "onStart": true,
-    "minimize": false
+    "round": 4
   },
-  "block": []
+  "option": {
+    "onStart": false,
+    "minimize": true
+  }
 }

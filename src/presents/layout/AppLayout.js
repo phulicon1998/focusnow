@@ -7,7 +7,7 @@ import {ReactComponent as Block} from "../../assets/icon/block.svg";
 import {ReactComponent as Setting} from "../../assets/icon/setting.svg";
 import {ReactComponent as Hide} from "../../assets/icon/hide.svg";
 
-const AppLayout = ({active, ...props}) => (
+const AppLayout = ({active, minimize, ...props}) => (
     <div className="layout">
         <div className="navbar">
             <div>
@@ -21,7 +21,7 @@ const AppLayout = ({active, ...props}) => (
                     <Setting/>
                 </Link>
             </div>
-            <button><Hide /></button>
+            <button onClick={minimize}><Hide /></button>
         </div>
         <div className="body">{props.children}</div>
     </div>
