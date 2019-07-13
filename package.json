@@ -7,7 +7,7 @@
         "caniuse-lite": "^1.0.30000983",
         "concurrently": "^4.1.1",
         "electron": "^5.0.6",
-        "electron-builder": "^20.44.4",
+        "electron-builder": "^21.0.15",
         "electron-is-dev": "^1.1.0",
         "lodash.template": "^4.5.0",
         "lowdb": "^1.0.0",
@@ -18,7 +18,8 @@
         "react-router-dom": "^5.0.1",
         "react-scripts": "3.0.1",
         "shortid": "^2.2.14",
-        "wait-on": "^3.3.0"
+        "wait-on": "^3.3.0",
+        "lodash": ">=4.17.13"
     },
     "scripts": {
         "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
