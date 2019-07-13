@@ -1,29 +1,42 @@
-const {ipcMain, BrowserWindow, Menu, Tray} = require("electron");
+const {ipcMain, BrowserWindow, Menu, Tray, app} = require("electron");
 const db = require("../service/dbControl");
 const path = require("path");
 
+let tray, win;
 const iconPath = path.join(__dirname, "../assets/icon/icon.ico");
 
 ipcMain.on("minimize", minimize);
 
 async function minimize() {
     try {
+        win = BrowserWindow.getFocusedWindow();
         let option = await db.get("option").value();
         if(option.minimize){
-            let tray = new Tray(iconPath);
-            const contextMenu = new Menu.buildFromTemplate([
-                { label: "Show" },
-                { label: "Exit" }
-            ])
-
+            tray = new Tray(iconPath);
+            let contextMenu = new Menu.buildFromTemplate([
+                { label: "Show", click: restore },
+                { type: "separator" },
+                { label: "Close", click: close }
+            ]);
             tray.setToolTip("Focus App");
             tray.setContextMenu(contextMenu);
-
-            tray.on("click", () => win.maximize());
+            win.setSkipTaskbar(true);
         }
-        let win = BrowserWindow.getFocusedWindow();
         win.minimize();
     } catch(err) {
         console.log(err);
     }
+}
+
+function restore() {
+    if(win && win.isMinimized()){
+        win.setSkipTaskbar(false);
+        win.restore();
+        tray.destroy();
+    }
+}
+
+function close() {
+    tray.destroy();
+    app.quit();
 }
