@@ -10,6 +10,10 @@ export default function BlockContain(props) {
         list: []
     });
 
+    useEffect(() => {
+        return load();
+    }, []);
+
     function load() {
         let isLoad = false;
         if(!isLoad) {
@@ -20,10 +24,6 @@ export default function BlockContain(props) {
         }
         return () => isLoad = true;
     }
-
-    useEffect(() => {
-        return load();
-    }, []);
 
     function hdChange(e) {
         let {name, value} = e.target;

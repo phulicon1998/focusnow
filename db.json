@@ -1,33 +1,19 @@
 {
   "site": [
     {
-      "id": "cje6RggsH",
-      "link": "adasdasd",
-      "active": false
-    },
-    {
       "id": "FgwYAGEyF",
       "link": "ahkbsad",
-      "active": true
-    },
-    {
-      "id": "ymniBDf2w",
-      "link": "rffefwef",
-      "active": true
-    },
-    {
-      "id": "WBCGctF0Q",
-      "link": "facebook.com",
       "active": false
     }
   ],
   "time": {
-    "work": 25,
+    "work": 22,
     "short": 5,
     "long": 20,
-    "round": 4,
-    "onStart": true,
-    "minimize": false
+    "round": 4
   },
-  "block": []
+  "option": {
+    "onStart": false,
+    "minimize": true
+  }
 }

@@ -15,8 +15,8 @@ const Empty = ({list, ...props}) => (
 )
 
 const Link = ({active, link, id, hdRemove, hdActive}) => (
-    <div className={`link ${active ? "active" : ""}`} onClick={hdActive.bind(this, id)}>
-        <div>
+    <div className={`link ${active ? "active" : ""}`}>
+        <div onClick={hdActive.bind(this, id)}>
             {active ? <Check/> : <Uncheck />}
             <span>www.{link} </span>
         </div>
@@ -36,8 +36,8 @@ const Block = ({block, unblock, list, link, hdChange, hdAdd, hdRemove, hdActive,
                 list.length > 0
                 ? list.map((v, i) => (
                     <Link
-                        key={i}
                         {...v}
+                        key={i}
                         hdRemove={hdRemove}
                         hdActive={hdActive}
                     />
