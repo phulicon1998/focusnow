@@ -45,6 +45,8 @@ const Block = ({block, unblock, list, link, hdChange, hdAdd, hdRemove, hdActive,
                 : <Empty />
             }
         </div>
+        {/* <button onClick={block}>Block</button> */}
+        <button onClick={unblock}>Unblock</button>
     </AppLayout>
 )
 

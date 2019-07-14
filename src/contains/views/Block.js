@@ -51,6 +51,9 @@ export default function BlockContain(props) {
         setState(prev => ({...prev, list}));
     }
 
+    const block = () => ipc.send("block");
+    const unblock = () => ipc.send("unblock");
+
     return <Block
         {...props}
         {...state}
@@ -58,5 +61,7 @@ export default function BlockContain(props) {
         hdAdd={hdAdd}
         hdRemove={hdRemove}
         hdActive={hdActive}
+        block={block}
+        unblock={unblock}
     />
 }

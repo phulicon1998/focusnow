@@ -3,12 +3,12 @@ const path = require("path");
 const isDev = require("electron-is-dev");
 const notifier = require("node-notifier");
 const db = require("../service/dbControl");
-const {promisify} = require("util");
+// const {promisify} = require("util");
 const fs = require("fs");
 
-const readFile = promisify(fs.readFile);
-const appendFile = promisify(fs.appendFile);
-const writeFile = promisify(fs.writeFile);
+// const readFile = promisify(fs.readFile);
+// const appendFile = promisify(fs.appendFile);
+// const writeFile = promisify(fs.writeFile);
 
 const {width} = (screen.getPrimaryDisplay()).size;
 const filePath = "C:\\Windows\\System32\\drivers\\etc\\hosts";
@@ -22,6 +22,8 @@ ipcMain.on("break-time", breakTime);
 ipcMain.on("work-time", workTime);
 ipcMain.on("finish", finish);
 ipcMain.on("get-focus", getFocus);
+ipcMain.on("block", block);
+ipcMain.on("unblock", clearBlock);
 
 function winFocus() {
     let currentWin = BrowserWindow.getFocusedWindow();
@@ -43,6 +45,8 @@ function winFocus() {
 
     startWin.loadURL(isDev ? "http://localhost:3000/focus" : `file://${path.join(__dirname, '../build/index.html')}`);
     startWin.show();
+
+    startWin.on("ready", block);
 
     startWin.on("closed", () => startWin = null);
 }
@@ -87,29 +91,37 @@ function clearHost(host) {
     return host.join("\n");
 }
 
-function writeHost(list) {
-    let content = [];
-    content.push(`" \n${beginLine}\n "`);
-    content.push(redirectPath + " tv.zing.vn");
-    content.push(` \n${endLine}`);
-    return content.join("\n");
-}
-
-async function block() {
+async function writeHost() {
     try {
-        await clearBlock();
-        let content = writeHost();
-        await appendFile(filePath, content);
+        let site = await db.get("site").filter({active: true}).value();
+        let fullAddress = site.map(v => `${redirectPath} www.${v.link}`);
+        let address = site.map(v => `${redirectPath} ${v.link}`);
+        let content = [`\n\n${beginLine}\n`, ...address, ...fullAddress, ` \n${endLine}`].join("\n");
+        return content;
     } catch(err) {
         console.log(err);
     }
 }
 
-async function clearBlock() {
+async function block() {
     try {
-        let host = (await readFile(filePath)).toString().split("\n");
+        clearBlock();
+        let content = await writeHost();
+        // fs.chmodSyncfs (filePath, "as");
+        // let fd = fs.openSync(filePath);
+        // fs.appendFileSync(fd, content);
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+function clearBlock() {
+    try {
+        let host = (fs.readFileSync(filePath)).toString().split("\n");
         let removedHost = clearHost(host);
-        await writeFile(filePath, removedHost);
+        fs.chmodSync(filePath, 0o777);
+        // let fd = fs.openSync(filePath, 0o765);
+        fs.writeFileSync(filePath, removedHost, 0o777);
     } catch(err) {
         console.log(err);
     }
