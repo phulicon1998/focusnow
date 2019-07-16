@@ -38,7 +38,7 @@ function winFocus() {
 
     startWin.setPosition(width - 300, 80);
 
-    startWin.loadURL(isDev ? "http://localhost:3000/focus" : `file://${path.join(__dirname, '../build/index.html')}`);
+    startWin.loadURL(isDev ? "http://localhost:3002/focus" : `file://${path.join(__dirname, '../build/index.html')}`);
     startWin.show();
 
     startWin.on("ready", block);

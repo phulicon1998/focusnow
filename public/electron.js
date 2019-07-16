@@ -3,7 +3,6 @@ const {app, BrowserWindow, ipcMain} = require("electron");
 const path = require('path');
 const glob = require('glob');
 const isDev = require("electron-is-dev");
-require("../src/service/dbControl");
 
 ipcMain.on("restore-main", restoreMain);
 
@@ -26,7 +25,7 @@ function createWindow() {
         },
     })
 
-    win.loadURL(isDev ? "http://localhost:3000" : `file://${path.join(__dirname, '../build/index.html')}`);
+    win.loadURL(isDev ? "http://localhost:3002" : `file://${path.join(__dirname, '../build/index.html')}`);
 
     win.on('closed', () => {
         win = null
