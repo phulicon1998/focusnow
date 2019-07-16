@@ -3,12 +3,7 @@ const path = require("path");
 const isDev = require("electron-is-dev");
 const notifier = require("node-notifier");
 const db = require("../service/dbControl");
-// const {promisify} = require("util");
 const fs = require("fs");
-
-// const readFile = promisify(fs.readFile);
-// const appendFile = promisify(fs.appendFile);
-// const writeFile = promisify(fs.writeFile);
 
 const {width} = (screen.getPrimaryDisplay()).size;
 const filePath = "C:\\Windows\\System32\\drivers\\etc\\hosts";
@@ -107,9 +102,8 @@ async function block() {
     try {
         clearBlock();
         let content = await writeHost();
-        // fs.chmodSyncfs (filePath, "as");
-        // let fd = fs.openSync(filePath);
-        // fs.appendFileSync(fd, content);
+        fs.chmodSyncfs (filePath);
+        fs.appendFileSync(filePath, content);
     } catch(err) {
         console.log(err);
     }
@@ -119,9 +113,8 @@ function clearBlock() {
     try {
         let host = (fs.readFileSync(filePath)).toString().split("\n");
         let removedHost = clearHost(host);
-        fs.chmodSync(filePath, 0o777);
-        // let fd = fs.openSync(filePath, 0o765);
-        fs.writeFileSync(filePath, removedHost, 0o777);
+        fs.chmodSync(filePath);
+        fs.writeFileSync(filePath, removedHost);
     } catch(err) {
         console.log(err);
     }
