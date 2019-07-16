@@ -50,11 +50,13 @@
     "build": {
         "appId": "org.focusnow.81A90",
         "win": {
-            "requestedExecutionLevel": "highestAvailable"
+            "requestedExecutionLevel": "highestAvailable",
+            "icon": "build/icon.ico"
         },
         "files": [
             "build/**/*",
-            "node_modules/**/*"
+            "node_modules/**/*",
+            "service/*"
         ],
         "directories": {
             "buildResources": "assets"
