@@ -31,9 +31,15 @@ export default function BlockContain(props) {
     }
 
     function hdAdd(e) {
-        e.preventDefault();
-        ipc.send("add-site", state.link);
-        load();
+        if(state.link.length > 0) {
+            e.preventDefault();
+            ipc.send("add-site", state.link);
+            load();
+        }
+    }
+
+    function hdEnter(e){
+        if(e.key === "Enter") hdAdd(e);
     }
 
     function hdActive(id) {
@@ -59,6 +65,7 @@ export default function BlockContain(props) {
         {...state}
         hdChange={hdChange}
         hdAdd={hdAdd}
+        hdEnter={hdEnter}
         hdRemove={hdRemove}
         hdActive={hdActive}
         block={block}

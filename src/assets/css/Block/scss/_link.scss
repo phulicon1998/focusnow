@@ -12,10 +12,18 @@
         align-items: center;
 
         > span {
+            display: flex;
+            align-items: center;
             transition: .5s;
             margin-left: 18px;
             font-size: 12px;
             color: #bbbbbb;
+
+            > img {
+                margin-right: 8px;
+                width: 15px;
+                height: 15px;
+            }
         }
 
         > svg { transition-duration: .4s; }

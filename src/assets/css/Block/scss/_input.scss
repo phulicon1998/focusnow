@@ -6,9 +6,9 @@
     padding-left: 10px;
     margin-bottom: 20px;
     background-color: #ffffff25;
-
     border-radius: 3px;
     transition-duration: .5s;
+    position: relative;
 
     > input {
         font-family: "Montserrat", sans-serif;
@@ -41,13 +41,64 @@
         color: #67EAD2;
         background-color: #535353;
         font-size: 11px;
-        width: 40px;
+        width: 29px;
         height: 23px;
         box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.3);
+        transition: .5s;
+
+        &.empty {
+            box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.1);
+            background-color: #56565675;
+
+            > svg {
+                path {
+                    fill: #a5c1bc !important;
+                }
+            }
+        }
+    }
+
+    > span {
+        visibility: hidden;
+        width: 120px;
+        background-color: #1717177d;
+        color: #d0d0d0;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+
+        position: absolute;
+        z-index: 1;
+        top: 125%;
+        left: 50%;
+        margin-left: -60px;
+
+        opacity: 0;
+        transition: opacity .5s;
+        font-size: 11px;
+        font-family: "Montserrat", sans-serif;
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent #1717177d transparent;
+        }
     }
 
     &:focus-within {
         background-color: #ffffff17;
         box-shadow: 1px 2px 7px rgba(0, 0, 0, 0.1);
+    }
+
+    &:hover {
+        > span {
+            visibility: visible;
+            opacity: 1;
+        }
     }
 }

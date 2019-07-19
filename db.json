@@ -1,16 +1,5 @@
 {
-  "site": [
-    {
-      "id": "PnxZhJXW5",
-      "link": "fcine.net",
-      "active": true
-    },
-    {
-      "id": "cMRODWMja",
-      "link": "facebook.com",
-      "active": true
-    }
-  ],
+  "site": [],
   "time": {
     "work": 22,
     "short": 5,

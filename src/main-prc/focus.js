@@ -100,22 +100,24 @@ async function writeHost() {
 
 async function block() {
     try {
-        clearBlock();
+        unblock();
         let content = await writeHost();
-        fs.chmodSyncfs (filePath);
+        fs.chmodSync(filePath, 0o777);
         fs.appendFileSync(filePath, content);
+        console.log("[ BLOCK ACTIVATED ]");
     } catch(err) {
         console.log(err);
     }
 }
 
+async function unblock() {
+    let host = (fs.readFileSync(filePath)).toString().split("\n");
+    let removedHost = clearHost(host);
+    fs.chmodSync(filePath, 0o777);
+    fs.writeFileSync(filePath, removedHost);
+}
+
 function clearBlock() {
-    try {
-        let host = (fs.readFileSync(filePath)).toString().split("\n");
-        let removedHost = clearHost(host);
-        fs.chmodSync(filePath);
-        fs.writeFileSync(filePath, removedHost);
-    } catch(err) {
-        console.log(err);
-    }
+    unblock();
+    console.log("[ BLOCK DEACTIVATED ]");
 }
