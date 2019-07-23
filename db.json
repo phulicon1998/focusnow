@@ -1,5 +1,11 @@
 {
-  "site": [],
+  "site": [
+    {
+      "id": "M_MzsRc3e",
+      "link": "facebook.com",
+      "active": true
+    }
+  ],
   "time": {
     "work": 22,
     "short": 5,

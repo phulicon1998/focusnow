@@ -1,3 +1,4 @@
+require("dotenv").config();
 const {app, BrowserWindow, ipcMain} = require("electron");
 
 const path = require('path');
@@ -5,7 +6,7 @@ const glob = require('glob');
 const isDev = require("electron-is-dev");
 const exec = require('child_process').exec;
 exec('NET SESSION', function(err,so,se) {
-    alert(se.length === 0 ? "Running with admin privilege" : "Running with user privilege");
+    console.log(se.length === 0 ? "Running with admin privilege" : "Running with user privilege");
 });
 
 ipcMain.on("restore-main", restoreMain);

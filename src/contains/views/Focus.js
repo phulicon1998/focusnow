@@ -27,6 +27,10 @@ export default function FocusContain(props) {
         return () => isLoad = true;
     }, []);
 
+    ipc.on("toggle-focus", pause);
+    ipc.on("reset-focus", reset);
+    ipc.on("cancel-focus", cancel);
+
     useEffect(() => {
         let isLoad = false;
         if(!isLoad && time){
@@ -95,7 +99,10 @@ export default function FocusContain(props) {
         return decrease();
     }
 
-    const cancel = () => ipc.send("restore-main");
+    function cancel() {
+        ipc.send("clear-block");
+        ipc.send("restore-main");
+    };
 
     function changeProgressColor() {
         if(cont && breakTime) return "#CEA791";
