@@ -19,7 +19,7 @@ const Link = ({active, link, id, hdRemove, hdActive}) => (
     <div className={`link ${active ? "active" : ""}`}>
         <div onClick={hdActive.bind(this, id)}>
             {active ? <Check/> : <Uncheck />}
-            <span>{active && <img src={`https://${link}/favicon.ico`} alt=""/>} {link} </span>
+            <span>{active && <img src={`https://${link}/favicon.ico`} alt=""/>} {link.length > 15 ? `${link.substring(0, 15)}...` : link} </span>
         </div>
         <Remove onClick={hdRemove.bind(this, id)}/>
     </div>

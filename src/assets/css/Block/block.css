@@ -113,7 +113,8 @@
       transition: .5s;
       margin-left: 18px;
       font-size: 12px;
-      color: #bbbbbb; }
+      color: #bbbbbb;
+      width: 50px; }
       .link > div > span > img {
         margin-right: 8px;
         width: 15px;

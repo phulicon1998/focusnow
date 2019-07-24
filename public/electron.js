@@ -4,12 +4,8 @@ const {app, BrowserWindow, ipcMain} = require("electron");
 const path = require('path');
 const glob = require('glob');
 const isDev = require("electron-is-dev");
-const exec = require('child_process').exec;
-exec('NET SESSION', function(err,so,se) {
-    console.log(se.length === 0 ? "Running with admin privilege" : "Running with user privilege");
-});
 
-ipcMain.on("restore-main", restoreMain);
+ipcMain.on("restore-main", () => win.show());
 
 let win;
 
@@ -67,10 +63,4 @@ function makeSingleInstance () {
 function loadProcesses() {
     const files = glob.sync(path.join(__dirname, '../src/main-prc/*.js'));
     files.forEach((file) => { require(file) });
-}
-
-function restoreMain() {
-    let current = BrowserWindow.getFocusedWindow();
-    current.close();
-    win.show();
 }

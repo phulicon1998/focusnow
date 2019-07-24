@@ -27,10 +27,6 @@ export default function FocusContain(props) {
         return () => isLoad = true;
     }, []);
 
-    ipc.on("toggle-focus", pause);
-    ipc.on("reset-focus", reset);
-    ipc.on("cancel-focus", cancel);
-
     useEffect(() => {
         let isLoad = false;
         if(!isLoad && time){
@@ -44,6 +40,15 @@ export default function FocusContain(props) {
         }
         return () => isLoad = true;
     }, [time]);
+
+    useEffect(() => {
+        let isListen = true;
+        if(isListen) {
+            ipc.on("cancel-focus", cancel);
+        }
+        return () => isListen = false;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
         decrease(reset);
@@ -91,12 +96,8 @@ export default function FocusContain(props) {
     }
 
     function pause() {
-        if(cont) {
-            clearInterval(interval);
-            return setProgress({...progress, cont: !cont});
-        }
-        setProgress({...progress, cont: !cont});
-        return decrease();
+        if(cont) clearInterval(interval);
+        setProgress(prev => ({...prev, cont: !cont}));
     }
 
     function cancel() {

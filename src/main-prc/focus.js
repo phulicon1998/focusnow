@@ -8,10 +8,9 @@ const fs = require("fs");
 const {width} = (screen.getPrimaryDisplay()).size;
 const filePath = "C:\\Windows\\System32\\drivers\\etc\\hosts";
 const iconPath = path.join(__dirname, "../assets/icon/icon.ico");
-// const process.env.REDIRECTPATH = "127.0.0.1";
 const beginLine = "# BEGIN LINE - FOCUS APP - DO NOT TOUCH"
 const endLine = "# END LINE - FOCUS APP - DO NOT TOUCH";
-let startWin, tray, cont = true;
+let startWin, tray;
 
 ipcMain.on("start-focus", winFocus);
 ipcMain.on("break-time", breakTime);
@@ -45,10 +44,7 @@ async function winFocus() {
     if(option.minimize){
         tray = new Tray(iconPath);
         let contextMenu = new Menu.buildFromTemplate([
-            { label: cont ? "Pause" : "Resume", click: toggleFocus },
-            { label: "Reset", click: resetFocus },
-            { type: "separator" },
-            { label: "Cancel", click: cancelFocus },
+            { label: "Stop", click: cancelFocus },
         ]);
         tray.setToolTip("Focus App");
         tray.setContextMenu(contextMenu);
@@ -144,18 +140,9 @@ async function unblock() {
 
 function clearBlock() {
     unblock();
-    tray.destroy();
+    if(tray) tray.destroy();
+    startWin.close();
     console.log("[ BLOCK DEACTIVATED ]");
-}
-
-function toggleFocus() {
-    cont = !cont;
-    return startWin.webContents.send("toggle-focus");
-}
-
-function resetFocus() {
-    cont = false;
-    return startWin.webContents.send("reset-focus");
 }
 
 function cancelFocus() {

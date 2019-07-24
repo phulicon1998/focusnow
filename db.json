@@ -1,13 +1,7 @@
 {
-  "site": [
-    {
-      "id": "M_MzsRc3e",
-      "link": "facebook.com",
-      "active": true
-    }
-  ],
+  "site": [],
   "time": {
-    "work": 22,
+    "work": 25,
     "short": 5,
     "long": 20,
     "round": 4
