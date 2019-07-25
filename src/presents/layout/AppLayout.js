@@ -23,7 +23,14 @@ const AppLayout = ({active, minimize, ...props}) => (
             </div>
             <button onClick={minimize}><Hide /></button>
         </div>
-        <div className="body">{props.children}</div>
+        <div className="body">
+            <div className="titleBar">
+                <div><span>Fyza</span></div>
+                <button></button>
+                <button></button>
+            </div>
+            {props.children}
+        </div>
     </div>
 )
 

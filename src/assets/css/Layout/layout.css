@@ -4,7 +4,7 @@
   background-color: white;
   flex-grow: 0;
   width: 100%;
-  height: 300px;
+  height: 100%;
   overflow: hidden; }
 
 .navbar {
@@ -13,7 +13,7 @@
   flex-direction: column;
   justify-content: space-between;
   min-width: 50px;
-  height: 300px;
+  height: 100%;
   position: fixed;
   z-index: 1;
   cursor: move;
@@ -72,11 +72,12 @@
 
 .body {
   background-image: linear-gradient(312.15deg, #6B7E81 32%, rgba(51, 69, 71, 0.5) 90.98%);
-  padding: 46px 35px 0px 77px;
+  padding: 54px 35px 0px 77px;
   font-family: "Montserrat", sans-serif;
   font-style: normal;
   color: white;
   width: 278px;
+  height: 100%;
   max-height: 100%;
   overflow: auto;
   cursor: default;
@@ -98,3 +99,28 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #f7f7f79e; }
+
+.titleBar {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2); }
+  .titleBar > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #8e8e8e;
+    width: 55px;
+    height: 26px;
+    background-color: rgba(82, 82, 82, 0.8);
+    font-size: 11px;
+    font-family: "Montserrat", sans-serif;
+    border-right: 2px solid rgba(72, 72, 72, 0.3);
+    border-bottom-left-radius: 3px; }
+  .titleBar > button {
+    background-color: rgba(82, 82, 82, 0.8);
+    outline: none;
+    border: none;
+    width: 41px;
+    height: 26px; }
