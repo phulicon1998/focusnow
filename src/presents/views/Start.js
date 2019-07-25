@@ -14,7 +14,7 @@ const Start = ({scrFocus, ...props}) => (
                 <span><Undo/></span>
                 <Unlink/>
             </div>
-            <p>Restart browser to take effect with blocked site</p>
+            <p>Please restart browser to take effect with blocked site</p>
         </div>
         <div className="btnStart">
             <button onClick={scrFocus}>Begin focus now</button>

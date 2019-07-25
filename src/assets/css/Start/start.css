@@ -5,22 +5,22 @@
   font-size: 26px;
   font-weight: normal;
   margin: 0;
-  margin-bottom: 25px;
+  margin-bottom: 58px;
   justify-content: space-between; }
 
 .remind {
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
-  margin-bottom: 27px; }
+  margin-bottom: 58px; }
   .remind > div {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 22px;
+    margin-bottom: 32px;
     width: 100%; }
     .remind > div > span {
-      margin-right: 22px;
-      margin-left: 22px; }
+      margin-right: 28px;
+      margin-left: 28px; }
   .remind > p {
     text-align: center;
     line-height: 1.5;

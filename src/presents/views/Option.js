@@ -28,11 +28,7 @@ const CheckItem = ({text, check, name, doCheck}) => (
 
 const Option = ({title, work, short, long, round, edit, doEdit, save, onStart, minimize, add, min, doCheck, ...props}) => (
     <AppLayout {...props}>
-        <h3 className={`option ${edit && "edit"}`}>{title} {
-            edit
-            ? <button onClick={save.bind(this, undefined)}><Save/> Save</button>
-            : <button onClick={doEdit.bind(true)}>Edit</button>
-        } </h3>
+        <h3 className="option">{title}</h3>
         <div className="time-setting">
             <TimeItem
                 text="Work"
@@ -66,6 +62,11 @@ const Option = ({title, work, short, long, round, edit, doEdit, save, onStart, m
                 add={add}
                 min={min}
             />
+            {
+                edit
+                ? <button onClick={save.bind(this, undefined)}><Save/> Save changes</button>
+                : <button onClick={doEdit.bind(true)}>Edit time number here...</button>
+            }
         </div>
         <div className="app-setting">
             <CheckItem

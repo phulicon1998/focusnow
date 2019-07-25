@@ -7,25 +7,6 @@
   margin: 0;
   margin-bottom: 25px;
   justify-content: space-between; }
-  .option.edit {
-    justify-content: flex-start; }
-    .option.edit > button {
-      margin-left: 10px; }
-      .option.edit > button > svg {
-        margin-right: 6px; }
-  .option > button {
-    cursor: pointer;
-    outline: none;
-    border: none;
-    border-radius: 3px;
-    color: #67EAD2;
-    background-color: #535353;
-    padding: 5px 10px 5px 10px;
-    font-size: 11px;
-    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center; }
 
 .timeItem {
   display: flex;
@@ -67,12 +48,32 @@
   padding-right: 5px;
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(211, 211, 211, 0.3); }
+  .time-setting > button {
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    color: #67EAD2;
+    background-color: #535353;
+    padding: 5px 10px 5px 10px;
+    font-size: 11px;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    font-family: "Montserrat", sans-serif;
+    display: flex;
+    align-items: center; }
+    .time-setting > button svg {
+      margin-right: 10px; }
 
 .app-setting {
   padding-top: 25px;
   padding-left: 5px;
   padding-right: 5px;
-  margin-bottom: 35px; }
+  padding-bottom: 70px; }
   .app-setting > div {
     display: flex;
     align-items: center;
