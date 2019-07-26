@@ -12,6 +12,7 @@
 
     > div {
         margin-top: 37px;
+
         > a {
             -webkit-app-region: no-drag;
             width: 100%;
@@ -66,25 +67,22 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: transparent;
 
         border: none;
         outline: none;
         width: 100%;
         height: 25px;
         cursor: pointer;
-        background-color: #484848;
-        transition: .5s;
+        margin-bottom: 15px;
 
         path {
-            transition: .5s;
-            fill: #787878 !important;
+            transition: .3s;
         }
 
         &:hover {
-            background-color: #5a5a5a;
-
             path {
-                fill: #D0D0D0 !important;
+                fill: #B6B6B6 !important;
             }
         }
     }

@@ -13,7 +13,8 @@
   margin-bottom: 20px;
   background-color: #ffffff25;
   border-radius: 3px;
-  transition-duration: .5s; }
+  transition-duration: .5s;
+  position: relative; }
   .siteInput > input {
     font-family: "Montserrat", sans-serif;
     background-color: transparent;
@@ -40,12 +41,47 @@
     color: #67EAD2;
     background-color: #535353;
     font-size: 11px;
-    width: 40px;
+    width: 29px;
     height: 23px;
-    box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.3); }
+    box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.3);
+    transition: .5s; }
+    .siteInput > button.empty {
+      box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.1);
+      background-color: #56565675; }
+      .siteInput > button.empty > svg path {
+        fill: #a5c1bc !important; }
+  .siteInput > span {
+    visibility: hidden;
+    width: 120px;
+    background-color: #1717177d;
+    color: #d0d0d0;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    top: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity .5s;
+    font-size: 11px;
+    font-family: "Montserrat", sans-serif; }
+    .siteInput > span::after {
+      content: "";
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: transparent transparent #1717177d transparent; }
   .siteInput:focus-within {
     background-color: #ffffff17;
     box-shadow: 1px 2px 7px rgba(0, 0, 0, 0.1); }
+  .siteInput:hover > span {
+    visibility: visible;
+    opacity: 1; }
 
 .empty {
   display: flex;
@@ -72,10 +108,17 @@
     display: flex;
     align-items: center; }
     .link > div > span {
+      display: flex;
+      align-items: center;
       transition: .5s;
       margin-left: 18px;
       font-size: 12px;
-      color: #bbbbbb; }
+      color: #bbbbbb;
+      width: 50px; }
+      .link > div > span > img {
+        margin-right: 8px;
+        width: 15px;
+        height: 15px; }
     .link > div > svg {
       transition-duration: .4s; }
   .link > svg > path {
@@ -101,44 +144,3 @@
   margin-top: 25px;
   margin-bottom: 30px;
   padding: 0px 5px 0px 10px; }
-
-.tooltip {
-  position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black;
-  /* If you want dots under the hoverable text */ }
-
-/* Tooltip text */
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
-  /* Position the tooltip text */
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -60px;
-  /* Fade in tooltip */
-  opacity: 0;
-  transition: opacity 0.3s; }
-
-/* Tooltip arrow */
-.tooltip .tooltiptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent; }
-
-/* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-  opacity: 1; }

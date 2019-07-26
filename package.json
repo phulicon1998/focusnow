@@ -3,12 +3,12 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-        "browserslist": "^4.6.4",
+        "browserslist": "^4.6.6",
         "caniuse-lite": "^1.0.30000983",
         "concurrently": "^4.1.1",
-        "electron": "^5.0.6",
-        "electron-builder": "^21.0.15",
+        "dotenv": "^8.0.0",
         "electron-is-dev": "^1.1.0",
+        "lodash": "^4.17.15",
         "lodash.template": "^4.5.0",
         "lowdb": "^1.0.0",
         "node-notifier": "^5.4.0",
@@ -18,8 +18,7 @@
         "react-router-dom": "^5.0.1",
         "react-scripts": "3.0.1",
         "shortid": "^2.2.14",
-        "wait-on": "^3.3.0",
-        "lodash": ">=4.17.13"
+        "wait-on": "^3.3.0"
     },
     "scripts": {
         "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
@@ -28,7 +27,9 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "e-dev": "concurrently \"npm run watch-css\" \"npm run start\" \"wait-on http://localhost:3000 && electron .\""
+        "e-dev": "concurrently \"npm run watch-css\" \"npm run start\" \"wait-on http://localhost:9000 && electron .\"",
+        "electron-pack": "electron-builder -c.extraMetadata.main=build/electron.js",
+        "preelectron-pack": "npm run build"
     },
     "eslintConfig": {
         "extends": "react-app"
@@ -45,9 +46,25 @@
             "last 1 safari version"
         ]
     },
-    "main": "public/main.js",
+    "homepage": "./",
+    "main": "public/electron.js",
     "build": {
-        "appId": "org.focusnow.81A90"
+        "appId": "org.focusnow.81A90",
+        "win": {
+            "requestedExecutionLevel": "highestAvailable",
+            "icon": "build/icon.ico"
+        },
+        "files": [
+            "build/**/*",
+            "node_modules/**/*",
+            "service/*"
+        ],
+        "directories": {
+            "buildResources": "assets"
+        }
     },
-    "devDependencies": {}
+    "devDependencies": {
+        "electron": "^5.0.6",
+        "electron-builder": "^21.0.15"
+    }
 }

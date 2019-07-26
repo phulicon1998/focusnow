@@ -42,6 +42,15 @@ export default function FocusContain(props) {
     }, [time]);
 
     useEffect(() => {
+        let isListen = true;
+        if(isListen) {
+            ipc.on("cancel-focus", cancel);
+        }
+        return () => isListen = false;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    useEffect(() => {
         decrease(reset);
         return () => clearInterval(interval);
     });
@@ -87,15 +96,14 @@ export default function FocusContain(props) {
     }
 
     function pause() {
-        if(cont) {
-            clearInterval(interval);
-            return setProgress({...progress, cont: !cont});
-        }
-        setProgress({...progress, cont: !cont});
-        return decrease();
+        if(cont) clearInterval(interval);
+        setProgress(prev => ({...prev, cont: !cont}));
     }
 
-    const cancel = () => ipc.send("restore-main");
+    function cancel() {
+        ipc.send("clear-block");
+        ipc.send("restore-main");
+    };
 
     function changeProgressColor() {
         if(cont && breakTime) return "#CEA791";

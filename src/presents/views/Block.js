@@ -2,10 +2,11 @@ import React from "react";
 import "../../assets/css/Block/block.css"
 import AppLayout from "../../contains/layout/AppLayout";
 
-import {ReactComponent as Face} from "../../assets/icon/grin.svg";
+import {ReactComponent as Face} from "../../assets/icon/face.svg";
 import {ReactComponent as Check} from "../../assets/icon/check.svg";
 import {ReactComponent as Uncheck} from "../../assets/icon/uncheck.svg";
 import {ReactComponent as Remove} from "../../assets/icon/undelete.svg";
+import {ReactComponent as Enter} from "../../assets/icon/enter.svg";
 
 const Empty = ({list, ...props}) => (
     <div className="empty">
@@ -18,18 +19,19 @@ const Link = ({active, link, id, hdRemove, hdActive}) => (
     <div className={`link ${active ? "active" : ""}`}>
         <div onClick={hdActive.bind(this, id)}>
             {active ? <Check/> : <Uncheck />}
-            <span>www.{link} </span>
+            <span>{active && <img src={`https://${link}/favicon.ico`} alt=""/>} {link.length > 15 ? `${link.substring(0, 15)}...` : link} </span>
         </div>
         <Remove onClick={hdRemove.bind(this, id)}/>
     </div>
 );
 
-const Block = ({block, unblock, list, link, hdChange, hdAdd, hdRemove, hdActive, ...props}) => (
+const Block = ({list, link, hdChange, hdEnter, hdAdd, hdRemove, hdActive, ...props}) => (
     <AppLayout {...props}>
         <h3 className="block">Block sites</h3>
         <div className="siteInput">
-            <button onClick={hdAdd}>Add</button>
-            <input type="text" name="link" placeholder="Enter a link here..." value={link} onChange={hdChange}/>
+            <button className={link.length === 0 ? "empty" : ""} onClick={hdAdd}><Enter/></button>
+            <input type="text" name="link" placeholder="Enter a link here..." value={link} onChange={hdChange} onKeyPress={hdEnter}/>
+            <span><b>No need of "www."</b></span>
         </div>
         <div className="siteList">
             {

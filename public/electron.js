@@ -1,11 +1,11 @@
+require("dotenv").config();
 const {app, BrowserWindow, ipcMain} = require("electron");
 
 const path = require('path');
 const glob = require('glob');
 const isDev = require("electron-is-dev");
-require("../src/service/dbControl");
 
-ipcMain.on("restore-main", restoreMain);
+ipcMain.on("restore-main", () => win.show());
 
 let win;
 
@@ -16,17 +16,16 @@ function createWindow() {
 
     win = new BrowserWindow({
         width: 329,
-        height: 300,
+        height: 390,
         resizable: false,
         alwaysOnTop: true,
         frame: false,
         webPreferences: {
-            nodeIntegration: true,
-            webSecurity: false
+            nodeIntegration: true
         },
     })
 
-    win.loadURL(isDev ? "http://localhost:3000" : `file://${path.join(__dirname, '../build/index.html')}`);
+    win.loadURL(isDev ? `http://localhost:${process.env.PORT}` : `file://${path.join(__dirname, '../build/index.html')}`);
 
     win.on('closed', () => {
         win = null
@@ -63,10 +62,4 @@ function makeSingleInstance () {
 function loadProcesses() {
     const files = glob.sync(path.join(__dirname, '../src/main-prc/*.js'));
     files.forEach((file) => { require(file) });
-}
-
-function restoreMain() {
-    let current = BrowserWindow.getFocusedWindow();
-    current.close();
-    win.show();
 }
