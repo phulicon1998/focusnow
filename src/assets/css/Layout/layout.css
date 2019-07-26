@@ -50,21 +50,6 @@
           filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.2)); }
           .navbar > div > a.active > svg path, .navbar > div > a.active:hover > svg path {
             fill: #67EAD2 !important; }
-      .navbar > div > a:nth-of-type(1) {
-        animation-name: navAppearLeft;
-        animation-duration: .5s;
-        animation-fill-mode: backwards;
-        animation-delay: .5s; }
-      .navbar > div > a:nth-of-type(2) {
-        animation-name: navAppearLeft;
-        animation-duration: .5s;
-        animation-fill-mode: backwards;
-        animation-delay: .7s; }
-      .navbar > div > a:nth-of-type(3) {
-        animation-name: navAppearLeft;
-        animation-duration: .5s;
-        animation-fill-mode: backwards;
-        animation-delay: .9s; }
   .navbar > button {
     -webkit-app-region: no-drag;
     display: flex;
@@ -76,11 +61,7 @@
     width: 100%;
     height: 25px;
     cursor: pointer;
-    margin-bottom: 15px;
-    animation-name: navAppearBottom;
-    animation-duration: .5s;
-    animation-fill-mode: backwards;
-    animation-delay: .5s; }
+    margin-bottom: 15px; }
     .navbar > button path {
       transition: .3s; }
     .navbar > button:hover path {
@@ -88,16 +69,21 @@
 
 .body {
   background-image: linear-gradient(312.15deg, #6B7E81 32%, rgba(51, 69, 71, 0.5) 90.98%);
-  padding: 54px 35px 0px 77px;
   font-family: "Montserrat", sans-serif;
   font-style: normal;
   color: white;
-  width: 278px;
+  width: 100%;
   height: 100%;
   max-height: 100%;
-  overflow: auto;
-  cursor: default;
-  user-select: none; }
+  overflow: hidden; }
+  .body > .content {
+    box-sizing: border-box;
+    overflow: auto;
+    max-height: 100%;
+    margin-top: 30px;
+    padding: 24px 30px 30px 77px;
+    cursor: default;
+    user-select: none; }
 
 ::-webkit-scrollbar {
   width: 10px; }

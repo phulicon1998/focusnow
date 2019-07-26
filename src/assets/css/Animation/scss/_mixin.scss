@@ -1,0 +1,14 @@
+%animateAppear {
+    animation-duration: .5s;
+    animation-fill-mode: backwards;
+}
+
+@mixin navAppearLeft {
+    animation-name: navAppearLeft;
+    @extend %animateAppear;
+}
+
+@mixin navAppearBottom {
+    animation-name: navAppearBottom;
+    @extend %animateAppear;
+}
