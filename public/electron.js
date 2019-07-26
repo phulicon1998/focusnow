@@ -25,7 +25,7 @@ function createWindow() {
         },
     })
 
-    win.loadURL(isDev ? "http://localhost:3002" : `file://${path.join(__dirname, '../build/index.html')}`);
+    win.loadURL(isDev ? `http://localhost:${process.env.PORT}` : `file://${path.join(__dirname, '../build/index.html')}`);
 
     win.on('closed', () => {
         win = null

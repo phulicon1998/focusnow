@@ -6,10 +6,8 @@ const db = require("../service/dbControl");
 const fs = require("fs");
 
 const {width} = (screen.getPrimaryDisplay()).size;
-const filePath = "C:\\Windows\\System32\\drivers\\etc\\hosts";
-const iconPath = path.join(__dirname, "../assets/icon/icon.ico");
-const beginLine = "# BEGIN LINE - FOCUS APP - DO NOT TOUCH"
-const endLine = "# END LINE - FOCUS APP - DO NOT TOUCH";
+const {REDIRECTPATH, WINPATH, ICONPATH, BEGIN, END, PORT} = process.env;
+const iconPath = path.join(__dirname, ICONPATH);
 let startWin, tray;
 
 ipcMain.on("start-focus", winFocus);
@@ -37,7 +35,7 @@ async function winFocus() {
 
     startWin.setPosition(width - 300, 80);
 
-    startWin.loadURL(isDev ? "http://localhost:3002/focus" : `file://${path.join(__dirname, '../build/index.html')}`);
+    startWin.loadURL(isDev ? `http://localhost:${PORT}/focus` : `file://${path.join(__dirname, '../build/index.html')}`);
     startWin.show();
 
     let option = await db.get("option").value();
@@ -93,8 +91,8 @@ async function getFocus() {
 }
 
 function clearHost(host) {
-    let start = host.findIndex(v => v === beginLine);
-    let end = host.findIndex(v => v === endLine);
+    let start = host.findIndex(v => v === BEGIN);
+    let end = host.findIndex(v => v === END);
     if(start !== -1 && end !== -1) host.splice(start-1, end+1);
     return host.join("\n");
 }
@@ -103,9 +101,9 @@ async function writeHost() {
     try {
         let site = await db.get("site").filter({active: true}).value();
         if(site.length > 0){
-            let fullAddress = site.map(v => `${process.env.REDIRECTPATH} www.${v.link}`);
-            let address = site.map(v => `${process.env.REDIRECTPATH} ${v.link}`);
-            let content = [`\n\n${beginLine}\n`, ...address, ...fullAddress, ` \n${endLine}`].join("\n");
+            let fullAddress = site.map(v => `${REDIRECTPATH} www.${v.link}`);
+            let address = site.map(v => `${REDIRECTPATH} ${v.link}`);
+            let content = [`\n\n${BEGIN}\n`, ...address, ...fullAddress, ` \n${END}`].join("\n");
             return content;
         } else {
             return false;
@@ -120,8 +118,8 @@ async function block() {
         unblock();
         let content = await writeHost();
         if(content){
-            fs.chmodSync(filePath, 0o777);
-            fs.appendFileSync(filePath, content);
+            fs.chmodSync(WINPATH, 0o777);
+            fs.appendFileSync(WINPATH, content);
             console.log("[ BLOCK ACTIVATED ]");
         } else {
             console.log("[ THERE IS NO SITE TO BLOCK ]");
@@ -132,10 +130,10 @@ async function block() {
 }
 
 async function unblock() {
-    let host = (fs.readFileSync(filePath)).toString().split("\n");
+    let host = (fs.readFileSync(WINPATH)).toString().split("\n");
     let removedHost = clearHost(host);
-    fs.chmodSync(filePath, 0o777);
-    fs.writeFileSync(filePath, removedHost);
+    fs.chmodSync(WINPATH, 0o777);
+    fs.writeFileSync(WINPATH, removedHost);
 }
 
 function clearBlock() {
