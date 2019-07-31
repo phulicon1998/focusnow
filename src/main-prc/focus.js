@@ -54,7 +54,7 @@ async function winFocus() {
 }
 
 async function workTime() {
-    await block();
+    // await block();
     return notifier.notify({
         title: "Back to work!",
         message: "Break time is over, continue to make progress",
@@ -63,10 +63,10 @@ async function workTime() {
 }
 
 function breakTime() {
-    unblock();
+    // unblock();
     return notifier.notify({
         title: "Break time!",
-        message: "Take a break to deal with next round!",
+        message: "Take a break to deal with next round!. The sites are still blocked",
         wait: true
     })
 }
@@ -75,7 +75,7 @@ function finish() {
     unblock();
     return notifier.notify({
         title: "Time is up! Congratulation!",
-        message: "You have finished the last round, i hope you had achieved what you want. Continue?",
+        message: "You have finished the last round, all sites are unblocked, i hope you had achieved what you want. Continue?",
         wait: true
     })
 }
