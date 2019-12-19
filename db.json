@@ -3,7 +3,7 @@
     {
       "id": "apWgVgv94",
       "link": "fcine.net",
-      "active": true
+      "active": false
     },
     {
       "id": "Oe6DY1uRf",
@@ -13,11 +13,11 @@
     {
       "id": "Pw1eYujvu",
       "link": "tve-4u.org",
-      "active": true
+      "active": false
     }
   ],
   "time": {
-    "work": 25,
+    "work": 1,
     "short": 5,
     "long": 20,
     "round": 4
